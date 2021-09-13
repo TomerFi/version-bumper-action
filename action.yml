@@ -1,0 +1,35 @@
+---
+name: Version Bumper
+author: Tomer Figenblat
+description: Automated semantic version bumps based on conventional commits
+branding:
+  icon: package
+  color: gray-dark
+inputs:
+  label:
+    description: Build label for the development iteration
+    required: false
+    default: .dev
+  changelog:
+    description: Set true to create a CHANGELOG.md file
+    required: false
+    default: false
+  preset:
+    description: Preset for creating the changelog
+    required: false
+    default: conventionalcommits
+outputs:
+  new_version:
+    description: The next semantic version
+  next_dev_iteration:
+    description: The next development iteration
+runs:
+  using: docker
+  image: docker://docker.io/tomerfi/version-bumper:1.0.0
+  args:
+    - '--changelog'
+    - ${{ inputs.changelog }}
+    - '--preset'
+    - ${{ inputs.preset }}
+    - '--label'
+    - ${{ inputs.label }}
