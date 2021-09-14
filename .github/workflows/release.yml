@@ -1,0 +1,42 @@
+---
+name: Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment: deployment
+    name: Release new version
+    steps:
+      - name: Source checkout
+        uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
+
+      - name: Eat own dogfood
+        id: bumper
+        uses: ./
+        with:
+          changelog: true
+
+      - name: Release to GitHub
+        id: gh_release
+        uses: ncipollo/release-action@v1.8.9
+        with:
+          bodyFile: CHANGELOG.md
+          tag: ${{ steps.bumper.outputs.new_version }}
+
+      - name: Tweet new release
+        uses: lazy-actions/tweet-action@1.0.1
+        with:
+          oauth_consumer_key: ${{ secrets.TWITTER_API_KEY }}
+          oauth_consumer_secret: ${{ secrets.TWITTER_API_SECRET_KEY }}
+          oauth_token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          oauth_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          message: |
+            🚀🎉 Version Bumper Action ${{ steps.bumper.outputs.new_version }} has been released! 🎉🚀
+            ${{ steps.gh_release.outputs.html_url }}
+
+            #version_bumper_action
