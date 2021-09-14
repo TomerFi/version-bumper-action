@@ -42,8 +42,8 @@ jobs:
 
       - name: Create initial testing repository
         run: |
-          mkdir tmprep
-          cd tmprep
+          mkdir ${{ GITHUB_WORKSPACE }}/tmprep
+          cd ${{ GITHUB_WORKSPACE }}/tmprep
           git init
           echo "blabla" > file
           git add file.txt
@@ -58,7 +58,7 @@ jobs:
 
       - name: Run local action
         id: patch_bumper
-        uses: ./
+        uses: ${{ GITHUB_WORKSPACE }}
 
       - name: Verify patch bump
         if: |
@@ -76,7 +76,7 @@ jobs:
 
       - name: Run local action
         id: minor_bumper
-        uses: ./
+        uses: ${{ GITHUB_WORKSPACE }}
 
       - name: Verify minor bump
         if: |
@@ -94,7 +94,7 @@ jobs:
 
       - name: Run local action
         id: major_bumper
-        uses: ./
+        uses: ${{ GITHUB_WORKSPACE }}
 
       - name: Verify major bump
         if: |
@@ -103,3 +103,7 @@ jobs:
         uses: actions/github-script@v4.1.0
         with:
           script: core.setFailed('Major bump not working correctly')
+
+      - name: Cleanup
+        working-directory: ${{ GITHUB_WORKSPACE }}
+        run: rm -r ${{ GITHUB_WORKSPACE }}/tmprep
