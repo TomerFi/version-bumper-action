@@ -21,23 +21,13 @@ inputs:
 outputs:
   new_version:
     description: The next semantic version
+    value: ${{ steps.version-bumper.outputs.new_version }}
   next_dev_iteration:
     description: The next development iteration
+    value: ${{ steps.version-bumper.outputs.next_dev_iteration }}
 runs:
-  using: docker
-  image: docker://docker.io/tomerfi/version-bumper:1.1.0
-  args:
-    - '--changelog'
-    - ${{ inputs.changelog }}
-    - '--preset'
-    - ${{ inputs.preset }}
-    - '--label'
-    - ${{ inputs.label }}
-    - '--outputtype'
-    - 'file'
-  post-entrypoint: |
-    line=$(head -n 1 version-bumper-output)
-    rm version-bumper-output
-    read new_version next_dev_iteration <<< $(cut -f1,2 -d" " <<<$line)
-    echo "::set-output name=new_version::$new_version"
-    echo "::set-output name=next_dev_iteration::$next_dev_iteration"
+  using: composite
+  steps:
+    - id: version-bumper
+      shell: bash
+      run: ${{ github.action_path }}/action.sh
