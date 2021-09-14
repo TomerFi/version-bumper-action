@@ -38,6 +38,7 @@ jobs:
         with:
           label: .tst
           changelog: true
+          folder: tmprepo
 
       - name: Verify patch bump
         if: >

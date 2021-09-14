@@ -18,6 +18,10 @@ inputs:
     description: Preset for creating the changelog
     required: false
     default: conventionalcommits
+  folder:
+    description: Folder in the workspace in which the .git repo resides
+    required: false
+    default: ""
 outputs:
   new_version:
     description: The next semantic version
@@ -30,3 +34,4 @@ runs:
     - ${{ inputs.changelog }}
     - ${{ inputs.preset }}
     - ${{ inputs.label }}
+    - /github/workspace/${{ input.folder }}
