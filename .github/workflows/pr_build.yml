@@ -34,6 +34,8 @@ jobs:
     steps:
       - name: Source checkout
         uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
 
       - name: Configure git
         run: |
@@ -46,7 +48,7 @@ jobs:
           cd ${{ github.workspace }}/tmprep
           git init
           echo "blabla" > file
-          git add file.txt
+          git add file
           git commit -m "build: initial commit"
           git tag -m "1.2.3" 1.2.3
 
@@ -58,12 +60,12 @@ jobs:
 
       - name: Run local action
         id: patch_bumper
-        uses: ${{ github.workspace }}
+        uses: ./
 
       - name: Verify patch bump
-        if: |
-          ${{ steps.patch_bumper.outputs.new_version != '1.2.4' ||
-              steps.patch_bumper.outputs.next_dev_iteration != '1.2.5.dev' }}
+        if: >
+          steps.patch_bumper.outputs.new_version != '1.2.4' ||
+          steps.patch_bumper.outputs.next_dev_iteration != '1.2.5.dev'
         uses: actions/github-script@v4.1.0
         with:
           script: core.setFailed('patch bump not working correctly')
@@ -76,12 +78,12 @@ jobs:
 
       - name: Run local action
         id: minor_bumper
-        uses: ${{ github.workspace }}
+        uses: ./
 
       - name: Verify minor bump
-        if: |
-          ${{ steps.minor_bumper.outputs.new_version != '1.3.0' ||
-              steps.minor_bumper.outputs.next_dev_iteration != '1.3.1.dev' }}
+        if: >
+          steps.minor_bumper.outputs.new_version != '1.3.0' ||
+          steps.minor_bumper.outputs.next_dev_iteration != '1.3.1.dev'
         uses: actions/github-script@v4.1.0
         with:
           script: core.setFailed('minor bump not working correctly')
@@ -94,17 +96,16 @@ jobs:
 
       - name: Run local action
         id: major_bumper
-        uses: ${{ github.workspace }}
+        uses: ./
 
       - name: Verify major bump
-        if: |
-          ${{ steps.major_bumper.outputs.new_version != '2.0.0' ||
-              steps.major_bumper.outputs.next_dev_iteration != '2.0.1.dev' }}
+        if: >
+          steps.major_bumper.outputs.new_version != '2.0.0' ||
+          steps.major_bumper.outputs.next_dev_iteration != '2.0.1.dev'
         uses: actions/github-script@v4.1.0
         with:
           script: core.setFailed('major bump not working correctly')
 
       - name: Cleanup
         if: always()
-        working-directory: ${{ github.workspace }}
         run: rm -rf ${{ github.workspace }}/tmprep

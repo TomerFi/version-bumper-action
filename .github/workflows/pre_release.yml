@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
 
       - name: Configure git
         run: |
@@ -23,35 +25,34 @@ jobs:
 
       - name: Create initial testing repository
         run: |
-          mkdir ${{ github.workspace }}/tmprep
-          cd ${{ github.workspace }}/tmprep
+          mkdir ${{ github.workspace }}/tmprepo
+          cd ${{ github.workspace }}/tmprepo
           git init
           echo "blabla" > file
-          git add file.txt
+          git add file
           git commit -m "build: initial commit"
 
       - name: Run local action
         id: bumper
-        uses: ${{ github.workspace }}
+        uses: ./
         with:
           label: .tst
           changelog: true
 
       - name: Verify patch bump
-        if: |
-          ${{ steps.bumper.outputs.new_version != '1.0.0' ||
-              steps.bumper.outputs.next_dev_iteration != '1.0.1.tst' }}
+        if: >
+          steps.bumper.outputs.new_version != '1.0.0' ||
+          steps.bumper.outputs.next_dev_iteration != '1.0.1.tst'
         uses: actions/github-script@v4.1.0
         with:
           script: core.setFailed('bump not working correctly')
 
       - name: Verify changelog file exists
-        if: hashFiles('CHANGELOG.md') != ''
-        uses: actions/github-script@v4.1.0
+        uses: andstor/file-existence-action@v1.0.1
         with:
-          script: core.setFailed('changelog file not created')
+          files: CHANGELOG.md
+          allow_failure: true
 
       - name: Cleanup
         if: always()
-        working-directory: ${{ github.workspace }}
-        run: rm -rf ${{ github.workspace }}/tmprep
+        run: rm -rf ${{ github.workspace }}/tmprepo
