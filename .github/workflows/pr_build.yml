@@ -61,6 +61,8 @@ jobs:
       - name: Run local action
         id: patch_bumper
         uses: ./
+        with:
+          folder: tmprepo
 
       - name: Verify patch bump
         if: >
@@ -79,6 +81,8 @@ jobs:
       - name: Run local action
         id: minor_bumper
         uses: ./
+        with:
+          folder: tmprepo
 
       - name: Verify minor bump
         if: >
@@ -97,6 +101,8 @@ jobs:
       - name: Run local action
         id: major_bumper
         uses: ./
+        with:
+          folder: tmprepo
 
       - name: Verify major bump
         if: >
@@ -108,4 +114,4 @@ jobs:
 
       - name: Cleanup
         if: always()
-        run: rm -rf ${{ github.workspace }}/tmprep
+        run: rm -rf ${{ github.workspace }}/tmprepo
