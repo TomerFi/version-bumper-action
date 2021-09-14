@@ -11,10 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# set version of version-bumper remote script
-bumper_version=1.1.0
 # execute remote script and save output to variable
-output=$(/bin/bash <(curl -s https://raw.githubusercontent.com/TomerFi/version-bumper/$bumper_version/entrypoint.sh))
+output=$(/bin/bash -c "/usr/local/scripts/entrypoint.sh --changelog $1 -- preset $2 --label $3")
 # split output members
 read new_version next_dev_iteration <<< $(cut -f1,2 -d" " <<<$output)
 # set action outputs
