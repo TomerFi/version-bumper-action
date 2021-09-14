@@ -14,7 +14,7 @@
 # execute script into variable
 output=$(/usr/local/scripts/entrypoint.sh --changelog $1 --preset $2 --label $3 --repopath /github/workspace)
 # split output members from the variable
-read new_version next_dev_iteration <<< $(cut -f1,2 -d" " <<<$output)
+read new_version next_dev_iteration <<<$(cut -f1,2 -d" " <<<$output)
 echo "debug"
 echo $new_version
 echo $next_dev_iteration

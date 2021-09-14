@@ -1,0 +1,13 @@
+# https://github.com/marketplace/actions/labeler
+---
+"scope: project":
+  - ./*
+"scope: docker":
+  - Dockerfile
+  - .dockerignore
+"scope: shell":
+  - ./*.sh
+"scope: action":
+  - action.yml
+"scope: ci":
+  - .github/**/*
