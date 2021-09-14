@@ -21,7 +21,7 @@ inputs:
   folder:
     description: Folder in the workspace in which the .git repo resides
     required: false
-    default: ""
+    default: "/"
 outputs:
   new_version:
     description: The next semantic version
@@ -34,4 +34,4 @@ runs:
     - ${{ inputs.changelog }}
     - ${{ inputs.preset }}
     - ${{ inputs.label }}
-    - /github/workspace/"${{ input.folder }}"
+    - ${{ input.folder }}
