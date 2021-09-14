@@ -11,10 +11,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# execute remote script and save output to variable
-output=$(/bin/bash -c "/usr/local/scripts/entrypoint.sh --changelog $1 -- preset $2 --label $3")
-# split output members
+# execute script into variable
+output=$(/usr/local/scripts/entrypoint.sh --changelog $1 --preset $2 --label $3 --repopath /github/workspace)
+# split output members from the variable
 read new_version next_dev_iteration <<< $(cut -f1,2 -d" " <<<$output)
+echo "debug"
+echo $new_version
+echo $next_dev_iteration
 # set action outputs
 echo "::set-output name=new_version::$new_version"
 echo "::set-output name=next_dev_iteration::$next_dev_iteration"
