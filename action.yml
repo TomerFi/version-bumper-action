@@ -1,6 +1,6 @@
 ---
 name: Version Bumper
-author: Tomer Figenblat
+author: TomerFi
 description: Automated semantic version bumps based on conventional commits
 branding:
   icon: package
