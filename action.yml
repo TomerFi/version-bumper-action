@@ -34,4 +34,4 @@ runs:
     - ${{ inputs.changelog }}
     - ${{ inputs.preset }}
     - ${{ inputs.label }}
-    - /github/workspace/"${{ input.folder }}""
+    - /github/workspace/"${{ input.folder }}"
