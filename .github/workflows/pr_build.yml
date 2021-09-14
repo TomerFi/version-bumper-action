@@ -42,8 +42,8 @@ jobs:
 
       - name: Create initial testing repository
         run: |
-          mkdir ${{ env.GITHUB_WORKSPACE }}/tmprep
-          cd ${{ env.GITHUB_WORKSPACE }}/tmprep
+          mkdir ${{ github.workspace}}/tmprep
+          cd ${{ github.workspace }}/tmprep
           git init
           echo "blabla" > file
           git add file.txt
@@ -58,7 +58,7 @@ jobs:
 
       - name: Run local action
         id: patch_bumper
-        uses: ${{ env.GITHUB_WORKSPACE }}
+        uses: ${{ github.workspace }}
 
       - name: Verify patch bump
         if: |
@@ -76,7 +76,7 @@ jobs:
 
       - name: Run local action
         id: minor_bumper
-        uses: ${{ env.GITHUB_WORKSPACE }}
+        uses: ${{ github.workspace }}
 
       - name: Verify minor bump
         if: |
@@ -94,7 +94,7 @@ jobs:
 
       - name: Run local action
         id: major_bumper
-        uses: ${{ env.GITHUB_WORKSPACE }}
+        uses: ${{ github.workspace }}
 
       - name: Verify major bump
         if: |
@@ -106,5 +106,5 @@ jobs:
 
       - name: Cleanup
         if: always()
-        working-directory: ${{ env.GITHUB_WORKSPACE }}
-        run: rm -rf ${{ env.GITHUB_WORKSPACE }}/tmprep
+        working-directory: ${{ github.workspace }}
+        run: rm -rf ${{ github.workspace }}/tmprep

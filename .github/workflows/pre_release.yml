@@ -23,8 +23,8 @@ jobs:
 
       - name: Create initial testing repository
         run: |
-          mkdir ${{ env.GITHUB_WORKSPACE }}/tmprep
-          cd ${{ env.GITHUB_WORKSPACE }}/tmprep
+          mkdir ${{ github.workspace }}/tmprep
+          cd ${{ github.workspace }}/tmprep
           git init
           echo "blabla" > file
           git add file.txt
@@ -32,7 +32,7 @@ jobs:
 
       - name: Run local action
         id: bumper
-        uses: ${{ env.GITHUB_WORKSPACE }}
+        uses: ${{ github.workspace }}
         with:
           label: .tst
           changelog: true
@@ -53,5 +53,5 @@ jobs:
 
       - name: Cleanup
         if: always()
-        working-directory: ${{ env.GITHUB_WORKSPACE }}
-        run: rm -rf ${{ env.GITHUB_WORKSPACE }}/tmprep
+        working-directory: ${{ github.workspace }}
+        run: rm -rf ${{ github.workspace }}/tmprep
