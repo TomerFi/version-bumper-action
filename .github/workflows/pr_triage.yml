@@ -21,7 +21,6 @@ jobs:
       - name: Add review label
         uses: actions-ecosystem/action-add-labels@v1.1.3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: "status: needs review"
 
   triage-by-dependabot:
@@ -32,10 +31,9 @@ jobs:
       - name: Auto approve
         uses: hmarr/auto-approve-action@v2.1.0
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ github.token }}
 
       - name: Add approved label
         uses: actions-ecosystem/action-add-labels@v1.1.3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: "status: approved"

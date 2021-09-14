@@ -11,9 +11,9 @@ Contributing is pretty straight-forward:
 ## Lint sources
 
 ```shell
-docker run --rm -e RUN_LOCAL=true -e LINTER_RULES_PATH=. -e VALIDATE_DOCKERFILE=true \
--e VALIDATE_EDITORCONFIG=true -e VALIDATE_MARKDOWN=true -e VALIDATE_YAML=true -e \
-VALIDATE_SHELL_SHFMT=true -v $PWD:/tmp/lint ghcr.io/github/super-linter:slim-v4
+docker run --rm -e RUN_LOCAL=true -e VALIDATE_DOCKERFILE=true -e VALIDATE_EDITORCONFIG=true \
+-e VALIDATE_MARKDOWN=true -e VALIDATE_YAML=true -e VALIDATE_SHELL_SHFMT=true \
+-v $PWD:/tmp/lint ghcr.io/github/super-linter:slim-v4
 ```
 
 ## Code of Conduct

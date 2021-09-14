@@ -15,9 +15,6 @@
 output=$(/usr/local/scripts/entrypoint.sh --changelog $1 --preset $2 --label $3 --repopath /github/workspace)
 # split output members from the variable
 read new_version next_dev_iteration <<<$(cut -f1,2 -d" " <<<$output)
-echo "debug"
-echo $new_version
-echo $next_dev_iteration
 # set action outputs
 echo "::set-output name=new_version::$new_version"
 echo "::set-output name=next_dev_iteration::$next_dev_iteration"
