@@ -21,12 +21,19 @@ inputs:
 outputs:
   new_version:
     description: The next semantic version
+    value: ${{ steps.bumper.outputs.new_version }}
   next_dev_iteration:
     description: The next development iteration
+    value: ${{ steps.bumper.outputs.next_dev_iteration }}
 runs:
-  using: docker
-  image: Dockerfile
-  args:
-    - ${{ inputs.changelog }}
-    - ${{ inputs.preset }}
-    - ${{ inputs.label }}
+  using: composite
+  steps:
+    - name: Checkout sources
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 4
+    - name: Run docker
+      id: bumper
+      uses: tomerfi/version-bumper-action@master
+      with:
+        args: ${{ inputs.changelog }} ${{ inputs.preset }} ${{ inputs.label }}
