@@ -12,7 +12,7 @@
 # limitations under the License.
 
 # execute script into variable
-output=$(/usr/local/scripts/entrypoint.sh --changelog $1 --preset $2 --label $3 --repopath /github/workspace/$4)
+output=$(/usr/local/scripts/entrypoint.sh --changelog $1 --preset $2 --label $3 --repopath $4)
 # split output members from the variable
 read new_version next_dev_iteration <<<$(cut -f1,2 -d" " <<<$output)
 # set action outputs
