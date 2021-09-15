@@ -44,8 +44,8 @@ jobs:
 
       - name: Create initial testing repository
         run: |
-          mkdir ${{ github.workspace}}/tmprep
-          cd ${{ github.workspace }}/tmprep
+          mkdir ${{ github.workspace}}/tmprepo
+          cd ${{ github.workspace }}/tmprepo
           git init
           echo "blabla" > file
           git add file
