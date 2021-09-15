@@ -131,5 +131,5 @@ dmypy.json
 ##########################
 ### Custom for project ###
 ##########################
-CHANGELOG.md
-release-context.json
+changelog-*.md
+release-context-*.json

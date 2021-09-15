@@ -11,7 +11,7 @@ inputs:
     required: false
     default: .dev
   changelog:
-    description: Set true to create a CHANGELOG.md file
+    description: Set true to create a changelog-X.md file (X is the version)
     required: false
     default: false
   preset:
