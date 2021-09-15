@@ -1,5 +1,5 @@
 ---
-name: Version Bumper
+name: Version Bumper Action
 author: TomerFi
 description: Automated semantic version bumps based on conventional commits
 branding:
