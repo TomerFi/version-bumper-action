@@ -51,7 +51,7 @@ jobs:
       - name: Verify changelog file exists
         uses: andstor/file-existence-action@v1.0.1
         with:
-          files: CHANGELOG.md
+          files: tmprepo/CHANGELOG.md
           allow_failure: true
 
       - name: Cleanup

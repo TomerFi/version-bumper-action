@@ -9,7 +9,7 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    name: Lint project
+    name: Lint the sources
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2.3.4
@@ -32,7 +32,7 @@ jobs:
     needs: [lint]
     name: Test the action
     steps:
-      - name: Source checkout
+      - name: Checkout sources
         uses: actions/checkout@v2.3.4
         with:
           fetch-depth: 0
@@ -58,7 +58,7 @@ jobs:
           git add fix_file
           git commit -m "fix: fixed something"
 
-      - name: Run local action
+      - name: Run local action for patch bump
         id: patch_bumper
         uses: ./
         with:
@@ -78,7 +78,7 @@ jobs:
           git add feat_file
           git commit -m "feat: added a new feature"
 
-      - name: Run local action
+      - name: Run local action for minor bump
         id: minor_bumper
         uses: ./
         with:
@@ -96,9 +96,9 @@ jobs:
         run: |
           echo "blabla" > breaking_file
           git add breaking_file
-          git commit -m "refactor: refactor some stuff\n\nBREAKING broke some stuff"
+          git commit -m "refactor: refactor some stuff\n\nBREAKING CHANGE: broke some stuff"
 
-      - name: Run local action
+      - name: Run local action for major bump
         id: major_bumper
         uses: ./
         with:
