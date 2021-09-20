@@ -2,7 +2,7 @@
 
 :package::rocket: Spice up your release workflow with automated version bumps! :rocket::package:</br>
 
-This action encapsulates [Version Bumper][1] for automation of the next semantic version,
+This action encapsulates [Version Bumper][1] for determining the next semantic version,</br>
 based on the [semantic tags][2] and [conventional commits][3] in your git repository.
 
 ## Minimal usage example
@@ -73,6 +73,15 @@ identified from [commit messages][3]:
 > If `changelog` is set to `true`, a file named `changelog-1.2.3.md` will be created,</br>
 > from which you can source your release notes or updated your changelog.
 
+## Example workflows
+
+Here are a couple of projects of mine, using this action:
+
+- [aioswitcher (python)][5]
+- [switcher_webapi (docker, coordinated with a text file)][6]
+- [alexa-skills-tester (java)][7]
+- [this action eats its own dogfood (docker based action)][8]
+
 <!-- editorconfig-checker-disable -->
 <!-- Real links -->
 [0]: https://github.com/TomerFi/version-bumper-action/actions/workflows/pre_release.yml
@@ -80,6 +89,10 @@ identified from [commit messages][3]:
 [2]: https://semver.org/
 [3]: https://conventionalcommits.org
 [4]: https://github.com/conventional-changelog/conventional-changelog/blob/master/packages/conventional-changelog-cli/cli.js
+[5]: https://github.com/TomerFi/aioswitcher/blob/dev/.github/workflows/release.yml
+[6]: https://github.com/TomerFi/switcher_webapi/blob/dev/.github/workflows/release.yml
+[7]: https://github.com/TomerFi/alexa-skills-tester/blob/master/.github/workflows/release.yml
+[8]: https://github.com/TomerFi/version-bumper-action/blob/master/.github/workflows/release.yml
 <!-- Badge links -->
 [conventional-commits]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
 [gh-build-status]: https://github.com/TomerFi/version-bumper-action/actions/workflows/pre_release.yml/badge.svg
