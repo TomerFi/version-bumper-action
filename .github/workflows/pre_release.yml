@@ -44,7 +44,7 @@ jobs:
         if: >
           steps.bumper.outputs.new_version != '1.0.0' ||
           steps.bumper.outputs.next_dev_iteration != '1.0.1.tst'
-        uses: actions/github-script@v4.1.0
+        uses: actions/github-script@v4.1.1
         with:
           script: core.setFailed('bump not working correctly')
 
