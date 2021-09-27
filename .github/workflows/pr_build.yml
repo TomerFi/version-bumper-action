@@ -99,7 +99,9 @@ jobs:
         run: |
           echo "blabla" > breaking_file
           git add breaking_file
-          git commit -m "refactor: refactor some stuff\n\nBREAKING CHANGE: broke some stuff"
+          git commit -m "refactor: refactor some stuff
+
+          BREAKING CHANGE: broke some stuff"
 
       - name: Run local action for major bump
         id: major_bumper
