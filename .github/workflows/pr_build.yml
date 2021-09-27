@@ -9,7 +9,7 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    name: Lint the sources
+    name: Lint project
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2.3.4
@@ -21,8 +21,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: false
+          IGNORE_GITIGNORED_FILES: true
+          IGNORE_GENERATED_FILES: true
           VALIDATE_DOCKERFILE: true
           VALIDATE_EDITORCONFIG: true
+          VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_MARKDOWN: true
           VALIDATE_SHELL_SHFMT: true
           VALIDATE_YAML: true
