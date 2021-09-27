@@ -16,16 +16,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Lint sources
-        uses: docker://ghcr.io/github/super-linter:slim-v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_ALL_CODEBASE: false
-          VALIDATE_DOCKERFILE: true
-          VALIDATE_EDITORCONFIG: true
-          VALIDATE_MARKDOWN: true
-          VALIDATE_SHELL_SHFMT: true
-          VALIDATE_YAML: true
+      #- name: Lint sources
+      #  uses: docker://ghcr.io/github/super-linter:slim-v4
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #    VALIDATE_ALL_CODEBASE: false
+      #    VALIDATE_DOCKERFILE: true
+      #    VALIDATE_EDITORCONFIG: true
+      #    VALIDATE_MARKDOWN: true
+      #    VALIDATE_SHELL_SHFMT: true
+      #    VALIDATE_YAML: true
 
   test:
     runs-on: ubuntu-latest
@@ -65,6 +65,14 @@ jobs:
         with:
           folder: tmprepo
 
+      - name: debug patch
+        working-directory: tmprepo
+        run: |
+          git log --oneline
+          git tag --list
+          echo ${{ steps.patch_bumper.outputs.new_version }}
+          echo ${{ steps.patch_bumper.outputs.next_dev_iteration }}
+
       - name: Verify patch bump
         if: >
           steps.patch_bumper.outputs.new_version != '1.2.4' ||
@@ -85,6 +93,14 @@ jobs:
         uses: ./
         with:
           folder: tmprepo
+
+      - name: debug minor
+        working-directory: tmprepo
+        run: |
+          git log --oneline
+          git tag --list
+          echo ${{ steps.minor_bumper.outputs.new_version }}
+          echo ${{ steps.minor_bumper.outputs.next_dev_iteration }}
 
       - name: Verify minor bump
         if: >
@@ -108,6 +124,14 @@ jobs:
         uses: ./
         with:
           folder: tmprepo
+
+      - name: debug major
+        working-directory: tmprepo
+        run: |
+          git log
+          git tag --list
+          echo ${{ steps.major_bumper.outputs.new_version }}
+          echo ${{ steps.major_bumper.outputs.next_dev_iteration }}
 
       - name: Verify major bump
         if: >
