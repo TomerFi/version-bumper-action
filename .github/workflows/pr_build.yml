@@ -53,6 +53,7 @@ jobs:
           git tag -m "1.2.3" 1.2.3
 
       - name: Add commit of type fix
+        working-directory: tmprepo
         run: |
           echo "blabla" > fix_file
           git add fix_file
@@ -73,6 +74,7 @@ jobs:
           script: core.setFailed('patch bump not working correctly')
 
       - name: Add commit of type feat
+        working-directory: tmprepo
         run: |
           echo "blabla" > feat_file
           git add feat_file
@@ -84,10 +86,6 @@ jobs:
         with:
           folder: tmprepo
 
-      - run: |
-          echo ${{ steps.minor_bumper.outputs.new_version }}
-          echo ${{ steps.minor_bumper.outputs.next_dev_iteration }}
-
       - name: Verify minor bump
         if: >
           steps.minor_bumper.outputs.new_version != '1.3.0' ||
@@ -97,6 +95,7 @@ jobs:
           script: core.setFailed('minor bump not working correctly')
 
       - name: Add breaking commit
+        working-directory: tmprepo
         run: |
           echo "blabla" > breaking_file
           git add breaking_file
