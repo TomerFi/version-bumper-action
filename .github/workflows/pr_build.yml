@@ -67,6 +67,7 @@ jobs:
 
       - name: debug patch
         working-directory: tmprepo
+
         run: |
           git log --oneline
           git tag --list
