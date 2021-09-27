@@ -1,5 +1,5 @@
 ---
-name: Pre-Release
+name: Stage
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ on:
       - master
 
 jobs:
-  pre-release:
+  stage:
     runs-on: ubuntu-latest
     environment: staging
     name: Test the action

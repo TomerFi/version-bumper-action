@@ -84,7 +84,7 @@ Here are a couple of projects of mine, using this action:
 
 <!-- editorconfig-checker-disable -->
 <!-- Real links -->
-[0]: https://github.com/TomerFi/version-bumper-action/actions/workflows/pre_release.yml
+[0]: https://github.com/TomerFi/version-bumper-action/actions/workflows/stage.yml
 [1]: https://hub.docker.com/r/tomerfi/version-bumper
 [2]: https://semver.org/
 [3]: https://conventionalcommits.org
@@ -95,5 +95,5 @@ Here are a couple of projects of mine, using this action:
 [8]: https://github.com/TomerFi/version-bumper-action/blob/master/.github/workflows/release.yml
 <!-- Badge links -->
 [conventional-commits]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
-[gh-build-status]: https://github.com/TomerFi/version-bumper-action/actions/workflows/pre_release.yml/badge.svg
+[gh-build-status]: https://github.com/TomerFi/version-bumper-action/actions/workflows/stage.yml/badge.svg
 <!-- editorconfig-checker-enable -->

@@ -9,7 +9,7 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    name: Lint the sources
+    name: Lint project
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2.3.4
