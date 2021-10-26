@@ -57,4 +57,4 @@ jobs:
         uses: actionsdesk/lfs-warning@v3.1
         with:
           labelName: "warn: lfs detected"
-          filesizelimit: "5mb"
+          filesizelimit: "1mb"
