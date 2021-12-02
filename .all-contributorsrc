@@ -10,5 +10,16 @@
   "contributorsPerLine": 7,
   "contributorsSortAlphabetically": true,
   "skipCi": true,
-  "contributors": []
+  "contributors": [
+    {
+      "login": "mrdoodles",
+      "name": "mrdoodles",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19146299?v=4",
+      "profile": "https://github.com/mrdoodles",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    }
+  ]
 }
