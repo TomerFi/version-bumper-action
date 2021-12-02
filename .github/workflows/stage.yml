@@ -43,7 +43,11 @@ jobs:
       - name: Verify patch bump
         if: >
           steps.bumper.outputs.new_version != '1.0.0' ||
-          steps.bumper.outputs.next_dev_iteration != '1.0.1.tst'
+          steps.bumper.outputs.next_dev_iteration != '1.0.1.tst' ||
+          steps.bumper.outputs.major_part != '1' ||
+          steps.bumper.outputs.minor_part != '0' ||
+          steps.bumper.outputs.patch_part != '0' ||
+          steps.bumper.outputs.patch_next_dev != '1.tst'
         uses: actions/github-script@v5
         with:
           script: core.setFailed('bump not working correctly')

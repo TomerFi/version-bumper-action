@@ -15,6 +15,15 @@
 output=$(/usr/local/scripts/entrypoint.sh --changelog $1 --preset $2 --label $3 --repopath $4)
 # split output members from the variable
 read new_version next_dev_iteration <<<$(cut -f1,2 -d" " <<<$output)
+# split out major, minor, patch versions
+read major_part <<<$(cut -f1 -d"." <<<"$new_version")
+read minor_part <<<$(cut -f2 -d"." <<<"$new_version")
+read patch_part <<<$(cut -f3 -d"." <<<"$new_version")
+read patch_next_dev <<<$(cut -f3- -d"." <<<"$next_dev_iteration")
 # set action outputs
 echo "::set-output name=new_version::$new_version"
 echo "::set-output name=next_dev_iteration::$next_dev_iteration"
+echo "::set-output name=major_part::$major_part"
+echo "::set-output name=minor_part::$minor_part"
+echo "::set-output name=patch_part::$patch_part"
+echo "::set-output name=patch_next_dev::$patch_next_dev"
