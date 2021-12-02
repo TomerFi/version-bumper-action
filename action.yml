@@ -33,7 +33,7 @@ outputs:
     description: The next minor version
   patch_version:
     description: The next patch version
-  patch_version_dev:
+  patch_next_dev:
     description: The next development patch version
 runs:
   using: docker

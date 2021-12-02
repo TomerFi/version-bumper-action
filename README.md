@@ -27,9 +27,9 @@ identified from [commit messages][3]:
 
 | Bump  | new_version | next_dev_iteration | changelog filename |
 | :---- | :---------: | :----------------: | :----------------- |
-| major | 3.0.0       | 3.0.1.dev          | changelog-3.0.0.md |
-| minor | 2.2.0       | 2.2.1.dev          | changelog-2.2.0.md |
-| patch | 2.1.7       | 2.1.8.dev          | changelog-2.1.7.md |
+| major |    3.0.0    |     3.0.1.dev      | changelog-3.0.0.md |
+| minor |    2.2.0    |     2.2.1.dev      | changelog-2.2.0.md |
+| patch |    2.1.7    |     2.1.8.dev      | changelog-2.1.7.md |
 
 ## Full usage example
 
@@ -70,7 +70,7 @@ identified from [commit messages][3]:
 | `major_version`      | The next major version         | `1`         |
 | `minor_version`      | The next minor version         | `2`         |
 | `patch_version`      | The next patch version         | `3`         |
-| `patch_version_dev`  | The next development patch     | `4.dev`     |
+| `patch_next_dev`     | The next development patch     | `4.dev`     |
 
 > If `changelog` is set to `true`, a file named `changelog-1.2.3.md` will be created,</br>
 > from which you can source your release notes or updated your changelog.
@@ -86,6 +86,7 @@ Here are a couple of projects of mine, using this action:
 
 <!-- editorconfig-checker-disable -->
 <!-- Real links -->
+
 [0]: https://github.com/TomerFi/version-bumper-action/actions/workflows/stage.yml
 [1]: https://hub.docker.com/r/tomerfi/version-bumper
 [2]: https://semver.org/
@@ -95,7 +96,10 @@ Here are a couple of projects of mine, using this action:
 [6]: https://github.com/TomerFi/switcher_webapi/blob/dev/.github/workflows/release.yml
 [7]: https://github.com/TomerFi/alexa-skills-tester/blob/master/.github/workflows/release.yml
 [8]: https://github.com/TomerFi/version-bumper-action/blob/master/.github/workflows/release.yml
+
 <!-- Badge links -->
+
 [conventional-commits]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
 [gh-build-status]: https://github.com/TomerFi/version-bumper-action/actions/workflows/stage.yml/badge.svg
+
 <!-- editorconfig-checker-enable -->
