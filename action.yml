@@ -27,6 +27,12 @@ outputs:
     description: The next semantic version
   next_dev_iteration:
     description: The next development iteration
+  major_version:
+    description: The next major version
+  minor_version:
+    description: The next minor version
+  patch_version:
+    description: The next patch version
 runs:
   using: docker
   image: Dockerfile
