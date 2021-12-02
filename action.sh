@@ -19,7 +19,7 @@ read new_version next_dev_iteration <<<$(cut -f1,2 -d" " <<<$output)
 read major_version <<<$(cut -f1 -d"." <<<"$new_version")
 read minor_version <<<$(cut -f2 -d"." <<<"$new_version")
 read patch_version <<<$(cut -f3 -d"." <<<"$new_version")
-patch_next_dev="$((patch_version+1)).dev"
+read patch_next_dev <<<$(cut -f3- -d"." <<<"$next_dev_iteration")
 # set action outputs
 echo "::set-output name=new_version::$new_version"
 echo "::set-output name=next_dev_iteration::$next_dev_iteration"
