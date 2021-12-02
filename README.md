@@ -67,6 +67,9 @@ identified from [commit messages][3]:
 | -------------------- | ------------------------------ | ----------- |
 | `new_version`        | The next semantic version      | `1.2.3`     |
 | `next_dev_iteration` | The next development iteration | `1.2.4.dev` |
+| `major_version`      | The next major version         | `1`         |
+| `minor_version`      | The next minor version         | `2`         |
+| `patch_version`      | The next patch version         | `3`         |
 
 > If `changelog` is set to `true`, a file named `changelog-1.2.3.md` will be created,</br>
 > from which you can source your release notes or updated your changelog.
