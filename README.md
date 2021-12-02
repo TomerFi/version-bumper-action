@@ -71,6 +71,12 @@ identified from [commit messages][3]:
 > If `changelog` is set to `true`, a file named `changelog-1.2.3.md` will be created,</br>
 > from which you can source your release notes or updated your changelog.
 
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
 ## Example workflows
 
 Here are a couple of projects of mine, using this action:
