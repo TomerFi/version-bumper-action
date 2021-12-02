@@ -70,6 +70,7 @@ identified from [commit messages][3]:
 | `major_version`      | The next major version         | `1`         |
 | `minor_version`      | The next minor version         | `2`         |
 | `patch_version`      | The next patch version         | `3`         |
+| `patch_version_dev`  | The next development patch     | `4.dev`     |
 
 > If `changelog` is set to `true`, a file named `changelog-1.2.3.md` will be created,</br>
 > from which you can source your release notes or updated your changelog.
