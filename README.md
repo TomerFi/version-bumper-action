@@ -63,14 +63,14 @@ identified from [commit messages][3]:
 
 ## Outputs
 
-| Key                  | Description                    | Example     |
-| -------------------- | ------------------------------ | ----------- |
-| `new_version`        | The next semantic version      | `1.2.3`     |
-| `next_dev_iteration` | The next development iteration | `1.2.4.dev` |
-| `major_version`      | The next major version         | `1`         |
-| `minor_version`      | The next minor version         | `2`         |
-| `patch_version`      | The next patch version         | `3`         |
-| `patch_next_dev`     | The next development patch     | `4.dev`     |
+| Key                  | Description                                 | Example     |
+| -------------------- | ------------------------------------------- | ----------- |
+| `new_version`        | The next semantic version                   | `1.2.3`     |
+| `next_dev_iteration` | The next development iteration              | `1.2.4.dev` |
+| `major_part`         | The major part of the next version          | `1`         |
+| `minor_part`         | The minor part of the next version          | `2`         |
+| `patch_part`         | The patch part of the next version          | `3`         |
+| `patch_next_dev`     | The patch part of the development iteration | `4.dev`     |
 
 > If `changelog` is set to `true`, a file named `changelog-1.2.3.md` will be created,</br>
 > from which you can source your release notes or updated your changelog.
