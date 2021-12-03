@@ -72,10 +72,10 @@ jobs:
         if: >
           steps.patch_bumper.outputs.new_version != '1.2.4' ||
           steps.patch_bumper.outputs.next_dev_iteration != '1.2.5.dev' ||
-          steps.bumper.outputs.major_part != '1' ||
-          steps.bumper.outputs.minor_part != '2' ||
-          steps.bumper.outputs.patch_part != '4' ||
-          steps.bumper.outputs.patch_next_dev != '5.dev'
+          steps.patch_bumper.outputs.major_part != '1' ||
+          steps.patch_bumper.outputs.minor_part != '2' ||
+          steps.patch_bumper.outputs.patch_part != '4' ||
+          steps.patch_bumper.outputs.patch_next_dev != '5.dev'
         uses: actions/github-script@v5
         with:
           script: core.setFailed('patch bump not working correctly')
@@ -97,10 +97,10 @@ jobs:
         if: >
           steps.minor_bumper.outputs.new_version != '1.3.0' ||
           steps.minor_bumper.outputs.next_dev_iteration != '1.3.1.dev' ||
-          steps.bumper.outputs.major_part != '1' ||
-          steps.bumper.outputs.minor_part != '3' ||
-          steps.bumper.outputs.patch_part != '0' ||
-          steps.bumper.outputs.patch_next_dev != '1.dev'
+          steps.minor_bumper.outputs.major_part != '1' ||
+          steps.minor_bumper.outputs.minor_part != '3' ||
+          steps.minor_bumper.outputs.patch_part != '0' ||
+          steps.minor_bumper.outputs.patch_next_dev != '1.dev'
         uses: actions/github-script@v5
         with:
           script: core.setFailed('minor bump not working correctly')
@@ -124,10 +124,10 @@ jobs:
         if: >
           steps.major_bumper.outputs.new_version != '2.0.0' ||
           steps.major_bumper.outputs.next_dev_iteration != '2.0.1.dev' ||
-          steps.bumper.outputs.major_part != '2' ||
-          steps.bumper.outputs.minor_part != '0' ||
-          steps.bumper.outputs.patch_part != '0' ||
-          steps.bumper.outputs.patch_next_dev != '1.dev'
+          steps.major_bumper.outputs.major_part != '2' ||
+          steps.major_bumper.outputs.minor_part != '0' ||
+          steps.major_bumper.outputs.patch_part != '0' ||
+          steps.major_bumper.outputs.patch_next_dev != '1.dev'
         uses: actions/github-script@v5
         with:
           script: core.setFailed('major bump not working correctly')
