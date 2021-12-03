@@ -47,7 +47,7 @@ jobs:
 
       - name: Push modifications
         run: |
-          git add .github/README.md
+          git add README.md
           git commit -m "docs: update README usage section with ${{ steps.bumper.outputs.new_version }} [skip ci]"
           git push
 
