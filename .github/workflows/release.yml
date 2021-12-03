@@ -38,7 +38,7 @@ jobs:
         run: >
           sed -i
           's/uses\: tomerfi\/version-bumper-action@.*/uses\: tomerfi\/version-bumper-action@${{ steps.bumper.outputs.new_version }}/g'
-          .github/README.md
+          README.md
 
       - name: Configure git
         run: |
