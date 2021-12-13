@@ -11,7 +11,7 @@ jobs:
     name: Check for stale issues
     steps:
       - name: Mark non-confirmed stale issues
-        uses: actions/stale@v4.0.0
+        uses: actions/stale@v4.1.0
         with:
           stale-issue-message: >
             This issue has been automatically marked as stale because it has not had
