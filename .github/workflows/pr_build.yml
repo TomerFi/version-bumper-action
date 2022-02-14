@@ -83,7 +83,7 @@ jobs:
           steps.patch_bumper.outputs.minor_part != '2' ||
           steps.patch_bumper.outputs.patch_part != '4' ||
           steps.patch_bumper.outputs.patch_next_dev != '5.dev'
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           script: core.setFailed('patch bump not working correctly')
 
@@ -108,7 +108,7 @@ jobs:
           steps.minor_bumper.outputs.minor_part != '3' ||
           steps.minor_bumper.outputs.patch_part != '0' ||
           steps.minor_bumper.outputs.patch_next_dev != '1.dev'
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           script: core.setFailed('minor bump not working correctly')
 
@@ -135,7 +135,7 @@ jobs:
           steps.major_bumper.outputs.minor_part != '0' ||
           steps.major_bumper.outputs.patch_part != '0' ||
           steps.major_bumper.outputs.patch_next_dev != '1.dev'
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           script: core.setFailed('major bump not working correctly')
 
