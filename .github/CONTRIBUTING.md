@@ -17,11 +17,19 @@ docker run --rm -e RUN_LOCAL=true -e IGNORE_GITIGNORED_FILES=true -e IGNORE_GENE
 -v $PWD:/tmp/lint ghcr.io/github/super-linter:slim-v4
 ```
 
+## Commit messages
+
+Commit messages must:
+
+- adhere the [Conventional Commits Specification][0]
+- be signed-off based on the [Developer Certificate of Origin][1]
+
 ## Code of Conduct
 
 Please check the [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
 
 <!-- Real Links -->
 [0]: https://conventionalcommits.org
+[1]: https://developercertificate.org
 <!-- Badges Links -->
 [conventional-commits]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
