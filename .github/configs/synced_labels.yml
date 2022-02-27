@@ -106,23 +106,6 @@
   color: "0e8a16"
   description: "Priority is low"
 
-# Project specific scope labels
-- name: "scope: project"
-  color: "bfe5bf"
-  description: "Modify root"
-- name: "scope: docker"
-  color: "bfe5bf"
-  description: "Modify docker sources"
-- name: "scope: shell"
-  color: "bfe5bf"
-  description: "Modify shell sources"
-- name: "scope: action"
-  color: "bfe5bf"
-  description: "Modify action config"
-- name: "scope: ci"
-  color: "bfe5bf"
-  description: "Modify ci configuration"
-
 # Various labels
 - name: "help wanted"
   color: "12ba0c"
