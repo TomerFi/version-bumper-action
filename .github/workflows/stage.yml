@@ -53,7 +53,7 @@ jobs:
           script: core.setFailed('bump not working correctly')
 
       - name: Verify changelog file exists
-        uses: andstor/file-existence-action@v1.0.1
+        uses: andstor/file-existence-action@v1.1.0
         with:
           files: tmprepo/changelog-1.0.0.md
           allow_failure: true
