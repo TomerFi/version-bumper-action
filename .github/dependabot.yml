@@ -5,8 +5,6 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    assignees:
-      - "TomerFi"
     labels:
       - "type: dependencies"
     commit-message:
@@ -17,8 +15,6 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    assignees:
-      - "TomerFi"
     labels:
       - "type: dependencies"
     commit-message:
