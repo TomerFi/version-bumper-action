@@ -16,7 +16,7 @@ based on the [semantic tags][2] and [conventional commits][3] in your git reposi
 
 - name: Run bumper
   id: bumper
-  uses: tomerfi/version-bumper-action@1.1.2
+  uses: tomerfi/version-bumper-action@1.1.3
 ```
 
 ## Parse outputs
@@ -42,7 +42,7 @@ identified from [commit messages][3]:
 
 - name: Run bumper
   id: bumper
-  uses: tomerfi/version-bumper-action@1.1.2
+  uses: tomerfi/version-bumper-action@1.1.3
   with:
     label: .dev
     changelog: true
