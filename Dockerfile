@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM docker.io/tomerfi/version-bumper:2.0.3
+FROM docker.io/tomerfi/version-bumper:2.0.4
 
 COPY action.sh /usr/local/scripts/action.sh
 
