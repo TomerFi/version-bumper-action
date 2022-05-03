@@ -100,7 +100,8 @@ Here are a couple of projects of mine, using this action:
 - [aioswitcher (python)][5]
 - [switcher_webapi (docker, coordinated with a text file)][6]
 - [alexa-skills-tester (java)][7]
-- [this action eats its own dogfood (docker based action)][8]
+- [auto-me-bot (javascript)][8]
+- [this action eats its own dogfood (docker based action)][9]
 
 <!-- editorconfig-checker-disable -->
 <!-- Real links -->
@@ -113,7 +114,8 @@ Here are a couple of projects of mine, using this action:
 [5]: https://github.com/TomerFi/aioswitcher/blob/dev/.github/workflows/release.yml
 [6]: https://github.com/TomerFi/switcher_webapi/blob/dev/.github/workflows/release.yml
 [7]: https://github.com/TomerFi/alexa-skills-tester/blob/master/.github/workflows/release.yml
-[8]: https://github.com/TomerFi/version-bumper-action/blob/master/.github/workflows/release.yml
+[8]: https://github.com/TomerFi/auto-me-bot/blob/master/.github/workflows/release.yml
+[9]: https://github.com/TomerFi/version-bumper-action/blob/master/.github/workflows/release.yml
 
 <!-- Badge links -->
 
