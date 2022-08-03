@@ -120,8 +120,6 @@ Here are a couple of projects of mine, using this action:
 [9]: https://github.com/TomerFi/version-bumper-action/blob/master/.github/workflows/release.yml
 
 <!-- Badge links -->
-
-[conventional-commits]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
 [gh-build-status]: https://github.com/TomerFi/version-bumper-action/actions/workflows/stage.yml/badge.svg
 
 <!-- editorconfig-checker-enable -->
