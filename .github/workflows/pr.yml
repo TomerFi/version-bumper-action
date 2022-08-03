@@ -157,6 +157,25 @@ jobs:
         with:
           script: core.setFailed('major bump not working correctly')
 
+      - name: Run local action overriding the bump with a patch bump
+        id: bumper_override
+        uses: ./
+        with:
+          folder: tmprepo
+          bumpoverride: patch
+
+      - name: Verify overriding with patch bump
+        if: >
+          steps.patch_bumper.outputs.new_version != '1.2.4' ||
+          steps.patch_bumper.outputs.next_dev_iteration != '1.2.5.dev' ||
+          steps.patch_bumper.outputs.major_part != '1' ||
+          steps.patch_bumper.outputs.minor_part != '2' ||
+          steps.patch_bumper.outputs.patch_part != '4' ||
+          steps.patch_bumper.outputs.patch_next_dev != '5.dev'
+        uses: actions/github-script@v6
+        with:
+          script: core.setFailed('overriding the bump as a patch bump not working correctly')
+
       - name: Cleanup
         if: always()
         run: rm -rf ${{ github.workspace }}/tmprepo

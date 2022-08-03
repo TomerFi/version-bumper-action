@@ -14,7 +14,7 @@
 # execute script into variable
 output=$(/usr/local/scripts/entrypoint.sh --changelog $1 --preset $2 --label $3 --repopath $4 --bumpoverride $5)
 # split output members from the variable
-read new_version next_dev_iteration <<<$(cut -f1,2 -d" " <<<"$output")
+read new_version next_dev_iteration <<<$(cut -f1,2 -d" " <<<$output)
 # split out major, minor, patch versions
 read major_part <<<$(cut -f1 -d"." <<<"$new_version")
 read minor_part <<<$(cut -f2 -d"." <<<"$new_version")
