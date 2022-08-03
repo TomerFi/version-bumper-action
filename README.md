@@ -48,16 +48,18 @@ identified from [commit messages][3]:
     changelog: true
     preset: conventionalcommits
     folder: ./
+    bumpoverride: auto
 ```
 
 ## Inputs
 
-| Key         | Description                                            | Default value         |
-| ----------- | ------------------------------------------------------ | --------------------- |
-| `label`     | Build label for the development iteration              | `.dev`                |
-| `changelog` | Set true to create a changelog-X.md file               | `false`               |
-| `preset`    | Preset for creating the changelog                      | `conventionalcommits` |
-| `folder`    | Folder in the workspace in which the .git repo resides | `./`                  |
+| Key             | Description                                             | Default value         |
+| --------------- | ------------------------------------------------------- | --------------------- |
+| `label`         | Build label for the development iteration               | `.dev`                |
+| `changelog`     | Set true to create a changelog-X.md file                | `false`               |
+| `preset`        | Preset for creating the changelog                       | `conventionalcommits` |
+| `folder`        | Folder in the workspace in which the .git repo resides  | `./`                  |
+| `bumpoverride`  | Override the version bump, can be either `auto`, `major`, `minor` or `patch`  | `auto` |
 
 > Tip: other than `conventionalcommits`, possible prest values can be found [here][4].
 
