@@ -22,6 +22,10 @@ inputs:
     description: Folder in the workspace in which the .git repo resides
     required: false
     default: ""
+  bumpoverride:
+    description: Override the version bump, can be either 'major', 'minor' or 'patch'
+    required: false
+    default: "auto"
 outputs:
   new_version:
     description: The next semantic version
@@ -43,3 +47,4 @@ runs:
     - ${{ inputs.preset }}
     - ${{ inputs.label }}
     - /github/workspace/${{ inputs.folder }}
+    - ${{ inputs.bumpoverride }}
