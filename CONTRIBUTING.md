@@ -7,7 +7,7 @@
 - Commit your work
 - Create a pull request against the `master` branch
 
-## Project walk through
+## Project walkthrough
 
 This is a *Github Action* of type
 [Docker container](https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action),<br/>
@@ -20,7 +20,7 @@ via a container based on the [Dockerfile](https://github.com/TomerFi/version-bum
 [entrypoint.sh](https://github.com/TomerFi/version-bumper/blob/master/entrypoint.sh) and parses its outcome as outputs
 for the action.
 
-## Lint sources with super linter
+## Lint sources with super-linter
 
 ```shell
 docker run --rm -e RUN_LOCAL=true -e IGNORE_GITIGNORED_FILES=true -e IGNORE_GENERATED_FILES=true \
