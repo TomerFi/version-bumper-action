@@ -83,10 +83,13 @@ identified from [commit messages][3]:
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
-  <tr>
-    <td align="center"><a href="https://github.com/MisterTimn"><img src="https://avatars.githubusercontent.com/u/4209558?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jasper Vaneessen</b></sub></a><br /><a href="https://github.com/TomerFi/version-bumper-action/commits?author=MisterTimn" title="Code">💻</a> <a href="https://github.com/TomerFi/version-bumper-action/commits?author=MisterTimn" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://github.com/mrdoodles"><img src="https://avatars.githubusercontent.com/u/19146299?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mrdoodles</b></sub></a><br /><a href="https://github.com/TomerFi/version-bumper-action/commits?author=mrdoodles" title="Code">💻</a> <a href="https://github.com/TomerFi/version-bumper-action/commits?author=mrdoodles" title="Documentation">📖</a></td>
-  </tr>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://github.com/MisterTimn"><img src="https://avatars.githubusercontent.com/u/4209558?v=4?s=100" width="100px;" alt="Jasper Vaneessen"/><br /><sub><b>Jasper Vaneessen</b></sub></a><br /><a href="https://github.com/TomerFi/version-bumper-action/commits?author=MisterTimn" title="Code">💻</a> <a href="https://github.com/TomerFi/version-bumper-action/commits?author=MisterTimn" title="Documentation">📖</a></td>
+      <td align="center"><a href="https://gsoftwarelab.com"><img src="https://avatars.githubusercontent.com/u/9322695?v=4?s=100" width="100px;" alt="Lucas Schmutzler"/><br /><sub><b>Lucas Schmutzler</b></sub></a><br /><a href="https://github.com/TomerFi/version-bumper-action/commits?author=g4m3r0" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/mrdoodles"><img src="https://avatars.githubusercontent.com/u/19146299?v=4?s=100" width="100px;" alt="mrdoodles"/><br /><sub><b>mrdoodles</b></sub></a><br /><a href="https://github.com/TomerFi/version-bumper-action/commits?author=mrdoodles" title="Code">💻</a> <a href="https://github.com/TomerFi/version-bumper-action/commits?author=mrdoodles" title="Documentation">📖</a></td>
+    </tr>
+  </tbody>
 </table>
 
 <!-- markdownlint-restore -->

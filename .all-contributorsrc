@@ -30,6 +30,16 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "g4m3r0",
+      "name": "Lucas Schmutzler",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9322695?v=4",
+      "profile": "https://gsoftwarelab.com",
+      "contributions": [
+        "code"
+      ]
     }
-  ]
+  ],
+  "commitConvention": "angular"
 }
