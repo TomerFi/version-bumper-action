@@ -21,9 +21,9 @@ read minor_part <<<$(cut -f2 -d"." <<<"$new_version")
 read patch_part <<<$(cut -f3 -d"." <<<"$new_version")
 read patch_next_dev <<<$(cut -f3- -d"." <<<"$next_dev_iteration")
 # set action outputs
-echo "::set-output name=new_version::$new_version"
-echo "::set-output name=next_dev_iteration::$next_dev_iteration"
-echo "::set-output name=major_part::$major_part"
-echo "::set-output name=minor_part::$minor_part"
-echo "::set-output name=patch_part::$patch_part"
-echo "::set-output name=patch_next_dev::$patch_next_dev"
+echo "new_version=$new_version" >> $GITHUB_OUTPUT
+echo "next_dev_iteration=$next_dev_iteration" >> $GITHUB_OUTPUT
+echo "major_part=$major_part" >> $GITHUB_OUTPUT
+echo "minor_part=$minor_part" >> $GITHUB_OUTPUT
+echo "patch_part=$patch_part" >> $GITHUB_OUTPUT
+echo "patch_next_dev=$patch_next_dev" >> $GITHUB_OUTPUT
