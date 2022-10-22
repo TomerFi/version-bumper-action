@@ -53,14 +53,10 @@ jobs:
             core.setOutput('html_url', response.data.html_url)
 
       - name: Update usage example
-        # editorconfig-checker-disable
-        # yamllint disable
         run: >
           sed -i
           's/uses\: tomerfi\/version-bumper-action@.*/uses\: tomerfi\/version-bumper-action@${{ steps.bumper.outputs.new_version }}/g'
           README.md
-        # editorconfig-checker-enable
-        # yamllint enable
 
       - name: Configure git
         run: |
@@ -68,14 +64,10 @@ jobs:
           git config user.email "${{ github.actor }}@users.noreply.github.com"
 
       - name: Push modifications
-        # editorconfig-checker-disable
-        # yamllint disable
         run: |
           git add README.md
           git commit -m "docs: update README usage section with ${{ steps.bumper.outputs.new_version }} [skip ci]"
           git push
-        # editorconfig-checker-enable
-        # yamllint enable
 
       - name: Tweet new release
         if: ${{ github.event.inputs.tweet == 'yes' }}

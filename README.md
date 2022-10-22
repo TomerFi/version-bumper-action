@@ -79,7 +79,6 @@ identified from [commit messages][3]:
 
 ## Contributors
 
-<!-- editorconfig-checker-disable -->
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -94,7 +93,6 @@ identified from [commit messages][3]:
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-<!-- editorconfig-checker-enable -->
 
 ## Example workflows
 
