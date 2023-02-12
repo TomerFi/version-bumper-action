@@ -7,10 +7,6 @@ on:
       title:
         description: "Release title"
         required: false
-      tweet:
-        description: "Tweet new release?"
-        required: false
-        default: "no"
 
 jobs:
   release:
@@ -68,17 +64,3 @@ jobs:
           git add README.md
           git commit -m "docs: update README usage section with ${{ steps.bumper.outputs.new_version }} [skip ci]"
           git push
-
-      - name: Tweet new release
-        if: ${{ github.event.inputs.tweet == 'yes' }}
-        uses: lazy-actions/tweet-action@1.0.1
-        with:
-          oauth_consumer_key: ${{ secrets.TWITTER_API_KEY }}
-          oauth_consumer_secret: ${{ secrets.TWITTER_API_SECRET_KEY }}
-          oauth_token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-          oauth_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-          message: |
-            🚀🎉 Version Bumper Action ${{ steps.bumper.outputs.new_version }} has been released! 🎉🚀
-            ${{ steps.gh_release.outputs.html_url }}
-
-            #version_bumper_action #semver #github_action
