@@ -77,7 +77,7 @@ identified from [commit messages][3]:
 > If `changelog` is set to `true`, a file named `changelog-1.2.3.md` will be created,</br>
 > from which you can source your release notes or updated your changelog.
 
-## Contributors
+## Contributors [![all-contributors]][10]
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -120,8 +120,9 @@ Here are a couple of projects of mine, using this action:
 [7]: https://github.com/TomerFi/alexa-skills-tester/blob/master/.github/workflows/release.yml
 [8]: https://github.com/TomerFi/auto-me-bot/blob/master/.github/workflows/release.yml
 [9]: https://github.com/TomerFi/version-bumper-action/blob/master/.github/workflows/release.yml
-
+[10]: https://allcontributors.org/
 <!-- Badge links -->
+[all-contributors]: https://img.shields.io/github/all-contributors/tomerfi/version-bumper-action?color=ee8449&style=flat-square
 [gh-build-status]: https://github.com/TomerFi/version-bumper-action/actions/workflows/stage.yml/badge.svg
 
 <!-- editorconfig-checker-enable -->
