@@ -48,7 +48,7 @@ jobs:
           steps.bumper.outputs.minor_part != '0' ||
           steps.bumper.outputs.patch_part != '0' ||
           steps.bumper.outputs.patch_next_dev != '1.tst'
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: core.setFailed('bump not working correctly')
 
