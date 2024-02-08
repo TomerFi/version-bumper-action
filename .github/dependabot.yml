@@ -13,7 +13,7 @@ updates:
     assignees:
       - "tomerfi"
 
-  - package-ecosystem: "docker"
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"

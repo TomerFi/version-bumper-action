@@ -6,45 +6,56 @@ branding:
   icon: package
   color: gray-dark
 inputs:
+  source:
+    description: Source for the bump, any semver string or 'git' to fetch from tags.
+    required: false
+    default: git
+  bump:
+    description: Target bump, 'major' | 'minor' | 'patch' | 'auto'. An 'auto' bump only works with a 'git' source.
+    required: false
+    default: auto
   label:
-    description: Build label for the development iteration
+    description: Development iteration build label. Defaults to '-dev'.
     required: false
-    default: .dev
-  changelog:
-    description: Set true to create a changelog-X.md file (X is the version)
+    default: -dev
+  path:
+    description: When source is 'git', set folder in the git. Defaults to running workspace.
     required: false
-    default: false
-  preset:
-    description: Preset for creating the changelog
-    required: false
-    default: conventionalcommits
+    default: ${{ github.workspace }}
+  # backward compatibility, will eventually be removed
   folder:
-    description: Folder in the workspace in which the .git repo resides
+    description: DEPRECATED Please use 'path'.
     required: false
-    default: ""
   bumpoverride:
-    description: Override the version bump, can be either 'major', 'minor' or 'patch'
+    description: DEPRECATED Please use 'bump'.
     required: false
-    default: "auto"
 outputs:
-  new_version:
-    description: The next semantic version
-  next_dev_iteration:
-    description: The next development iteration
+  current:
+    description: The original version.
+  bump:
+    description: The bump performed.
+  next:
+    description: The next version.
+  dev:
+    description: The next development iteration version.
+  bump_object:
+    description: The original object returned from the version-bumper tool.
+  # segregated version parts
   major_part:
-    description: The major part of the next version
+    description: The major part of the next version.
   minor_part:
-    description: The minor part of the next version
+    description: The minor part of the next version.
   patch_part:
-    description: The patch part of the next version
+    description: The patch part of the next version.
+  dev_patch_part:
+    description: The patch part of the development iteration.
+  # backward compatibility, will eventually be removed
+  new_version:
+    description: DEPRECATED Please use 'next'.
+  next_dev_iteration:
+    description: DEPRECATED Please use 'dev'.
   patch_next_dev:
-    description: The patch part of the development iteration
+    description: DEPRECATED Please use 'dev_patch_part'.
 runs:
-  using: docker
-  image: Dockerfile
-  args:
-    - ${{ inputs.changelog }}
-    - ${{ inputs.preset }}
-    - ${{ inputs.label }}
-    - /github/workspace/${{ inputs.folder }}
-    - ${{ inputs.bumpoverride }}
+  using: node20
+  main: dist/action.js
