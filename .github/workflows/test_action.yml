@@ -1,17 +1,15 @@
 ---
-name: Pull request build
+name: Test Action
 
 on:
-  pull_request:
-    branches:
-      - master
+  workflow_call:
+  workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
     name: Test the action
-    permissions:
-      pull-requests: read
+
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
@@ -25,7 +23,7 @@ jobs:
 
       - name: Create initial testing repository
         run: |
-          mkdir ${{ github.workspace}}/tmprepo
+          mkdir ${{ github.workspace }}/tmprepo
           cd ${{ github.workspace }}/tmprepo
           git init
           echo "blabla" > file
@@ -44,16 +42,19 @@ jobs:
         id: patch_bumper
         uses: ./
         with:
-          folder: tmprepo
+          path: ${{ github.workspace }}/tmprepo
+
+      - run: echo ${{ toJSON(steps.patch_bumper.outputs) }}
+        continue-on-error: true
 
       - name: Verify patch bump
         if: >
           steps.patch_bumper.outputs.new_version != '1.2.4' ||
-          steps.patch_bumper.outputs.next_dev_iteration != '1.2.5.dev' ||
+          steps.patch_bumper.outputs.next_dev_iteration != '1.2.5-dev' ||
           steps.patch_bumper.outputs.major_part != '1' ||
           steps.patch_bumper.outputs.minor_part != '2' ||
           steps.patch_bumper.outputs.patch_part != '4' ||
-          steps.patch_bumper.outputs.patch_next_dev != '5.dev'
+          steps.patch_bumper.outputs.patch_next_dev != '5-dev'
         uses: actions/github-script@v7
         with:
           script: core.setFailed('patch bump not working correctly')
@@ -69,16 +70,16 @@ jobs:
         id: minor_bumper
         uses: ./
         with:
-          folder: tmprepo
+          path: ${{ github.workspace }}/tmprepo
 
       - name: Verify minor bump
         if: >
           steps.minor_bumper.outputs.new_version != '1.3.0' ||
-          steps.minor_bumper.outputs.next_dev_iteration != '1.3.1.dev' ||
+          steps.minor_bumper.outputs.next_dev_iteration != '1.3.1-dev' ||
           steps.minor_bumper.outputs.major_part != '1' ||
           steps.minor_bumper.outputs.minor_part != '3' ||
           steps.minor_bumper.outputs.patch_part != '0' ||
-          steps.minor_bumper.outputs.patch_next_dev != '1.dev'
+          steps.minor_bumper.outputs.patch_next_dev != '1-dev'
         uses: actions/github-script@v7
         with:
           script: core.setFailed('minor bump not working correctly')
@@ -96,16 +97,16 @@ jobs:
         id: major_bumper
         uses: ./
         with:
-          folder: tmprepo
+          path: ${{ github.workspace }}/tmprepo
 
       - name: Verify major bump
         if: >
           steps.major_bumper.outputs.new_version != '2.0.0' ||
-          steps.major_bumper.outputs.next_dev_iteration != '2.0.1.dev' ||
+          steps.major_bumper.outputs.next_dev_iteration != '2.0.1-dev' ||
           steps.major_bumper.outputs.major_part != '2' ||
           steps.major_bumper.outputs.minor_part != '0' ||
           steps.major_bumper.outputs.patch_part != '0' ||
-          steps.major_bumper.outputs.patch_next_dev != '1.dev'
+          steps.major_bumper.outputs.patch_next_dev != '1-dev'
         uses: actions/github-script@v7
         with:
           script: core.setFailed('major bump not working correctly')
@@ -114,17 +115,17 @@ jobs:
         id: bumper_override
         uses: ./
         with:
-          folder: tmprepo
-          bumpoverride: patch
+          path: ${{ github.workspace }}/tmprepo
+          bump: patch
 
       - name: Verify overriding with patch bump
         if: >
           steps.patch_bumper.outputs.new_version != '1.2.4' ||
-          steps.patch_bumper.outputs.next_dev_iteration != '1.2.5.dev' ||
+          steps.patch_bumper.outputs.next_dev_iteration != '1.2.5-dev' ||
           steps.patch_bumper.outputs.major_part != '1' ||
           steps.patch_bumper.outputs.minor_part != '2' ||
           steps.patch_bumper.outputs.patch_part != '4' ||
-          steps.patch_bumper.outputs.patch_next_dev != '5.dev'
+          steps.patch_bumper.outputs.patch_next_dev != '5-dev'
         uses: actions/github-script@v7
         with:
           script: core.setFailed('overriding the bump as a patch bump not working correctly')
