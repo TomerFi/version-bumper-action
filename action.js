@@ -24,6 +24,5 @@ bumper({
   core.setOutput('next_dev_iteration', bump.dev)
   core.setOutput('patch_next_dev', devPatchPart)
 }).catch(err => {
-  core.error('tomer tomer debug 0')
   core.error(err)
 })

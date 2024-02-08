@@ -1,9 +1,12 @@
-:package::rocket: Spice up your release workflow with automated version bumps! :rocket::package:</br>
+<div align="center">
+<h1>Version Bumper Action</h1>
+<h3>:package::rocket: Spice up your release workflows with automated version bumps! :rocket::package:</h3>
+</div>
 
 ## About
 
-The _Version Bumper Action_ can help you figure out your next [semantic version][semver] bump based on
-[conventional commits][conventional-commits], or plain instructions.
+The _Version Bumper Action_ uses the [version bumper tool][version-bumper] to figure out the next
+[semantic version][semver] bump based on [conventional commits][conventional-commits], or plain instructions.
 
 <details>
 <summary>Upgrading from version 1 to 2? Click here.</summary>
@@ -46,26 +49,26 @@ Changes in the action flags:
 
 ### Inputs
 
-| Key       | Description                                                                                    | Default value             |
-|-----------|------------------------------------------------------------------------------------------------|---------------------------|
-| `source`  | Source for the bump, any semver string or 'git' to fetch from tags.                            | `git`                     |
-| `bump`    | Target bump, 'major', 'minor', 'patch', 'auto'. An 'auto' bump only works with a 'git' source. | `auto`                    |
-| `label`   | Development iteration build label.                                                             | `-dev`                    |
-| `path`    | When source is 'git', set folder in the git.                                                   | `${{ github.workspace }}` |
+| Key       | Description                                                                                   | Default value             |
+|-----------|-----------------------------------------------------------------------------------------------|---------------------------|
+| `source`  | Source for the bump, any semver string or 'git' to fetch from tags                            | `git`                     |
+| `bump`    | Target bump, 'major', 'minor', 'patch', 'auto'. An 'auto' bump only works with a 'git' source | `auto`                    |
+| `label`   | Development iteration build label                                                             | `-dev`                    |
+| `path`    | When source is 'git', set repository path                                                     | `${{ github.workspace }}` |
 
 ### Outputs
 
-| Key              | Description                                                | Example     |
-|------------------|------------------------------------------------------------|-------------|
-| `current`        | The original version.                                      | `1.2.3`     |
-| `bump`           | The bump performed.                                        | `patch`     |
-| `next`           | The next version.                                          | `1.2.4`     |
-| `dev`            | The next development iteration version.                    | `1.2.5-dev` |
-| `major_part`     | The major part of the next version.                        | `1`         |
-| `minor_part`     | The minor part of the next version.                        | `2`         |
-| `patch_part`     | The patch part of the next version.                        | `4`         |
-| `dev_patch_part` | The patch part of the development iteration.               | `5-dev`     |
-| `bump_object`    | The original object returned from the version-bumper tool. |             |
+| Key              | Description                                                                 | Example     |
+|------------------|-----------------------------------------------------------------------------|-------------|
+| `current`        | The original version                                                        | `1.2.3`     |
+| `bump`           | The bump performed                                                          | `patch`     |
+| `next`           | The next version                                                            | `1.2.4`     |
+| `dev`            | The next development iteration version                                      | `1.2.5-dev` |
+| `major_part`     | The major part of the next version                                          | `1`         |
+| `minor_part`     | The minor part of the next version                                          | `2`         |
+| `patch_part`     | The patch part of the next version                                          | `4`         |
+| `dev_patch_part` | The patch part of the development iteration                                 | `5-dev`     |
+| `bump_object`    | The original object returned from the [version bumper tool][version-bumper] |             |
 
 
 ## Contributors [![all-contributors-badge]][all-contributors]
@@ -92,6 +95,7 @@ Changes in the action flags:
 [semver]: https://semver.org/
 [conventional-commits]: https://conventionalcommits.org
 [all-contributors]: https://allcontributors.org/
+[version-bumper]: https://github.com/TomerFi/version-bumper
 <!-- Badge links -->
 [all-contributors-badge]: https://img.shields.io/github/all-contributors/tomerfi/version-bumper-action?style=plastic&label=%20&color=b7b1e3
 
