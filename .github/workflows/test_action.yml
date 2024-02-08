@@ -5,87 +5,100 @@ on:
   workflow_call:
   workflow_dispatch:
 
+### TODO better test + add manual tests
+
 jobs:
   test:
     runs-on: ubuntu-latest
     name: Test the action
+    env:
+      TEST_TARGET_REPO: ${{ github.workspace }}/tmprepo
 
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Configure git
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-      - name: Create initial testing repository
+      - name: Create testing repository for automatic bumps
         run: |
-          mkdir ${{ github.workspace }}/tmprepo
-          cd ${{ github.workspace }}/tmprepo
+          mkdir ${{ env.TEST_TARGET_REPO }}
+          cd ${{ env.TEST_TARGET_REPO }}
           git init
           echo "blabla" > file
           git add file
           git commit -m "build: initial commit"
           git tag -m "1.2.3" 1.2.3
 
-      - name: Add commit of type fix
-        working-directory: tmprepo
+      ######################################################
+      ##### Testing AUTOMATIC commits-based PATCH bump #####
+      ######################################################
+      - name: Add commit with a 'fix' type
+        working-directory: ${{ env.TEST_TARGET_REPO }}
         run: |
           echo "blabla" > fix_file
           git add fix_file
           git commit -m "fix: fixed something"
 
-      - name: Run local action for patch bump
+      - name: Run action for repo with a patch bump
         id: patch_bumper
         uses: ./
         with:
-          path: ${{ github.workspace }}/tmprepo
+          path: ${{ env.TEST_TARGET_REPO }}
 
-      - run: echo ${{ toJSON(steps.patch_bumper.outputs) }}
-        continue-on-error: true
-
-      - name: Verify patch bump
+      - name: Fail for automatic patch bump
         if: >
-          steps.patch_bumper.outputs.new_version != '1.2.4' ||
-          steps.patch_bumper.outputs.next_dev_iteration != '1.2.5-dev' ||
+          steps.patch_bumper.outputs.current != '1.2.3' ||
+          steps.patch_bumper.outputs.bump != 'patch' ||
+          steps.patch_bumper.outputs.next != '1.2.4' ||
+          steps.patch_bumper.outputs.dev != '1.2.5-dev' ||
           steps.patch_bumper.outputs.major_part != '1' ||
           steps.patch_bumper.outputs.minor_part != '2' ||
           steps.patch_bumper.outputs.patch_part != '4' ||
-          steps.patch_bumper.outputs.patch_next_dev != '5-dev'
+          steps.patch_bumper.outputs.dev_patch_part != '5-dev'
         uses: actions/github-script@v7
         with:
           script: core.setFailed('patch bump not working correctly')
 
-      - name: Add commit of type feat
-        working-directory: tmprepo
+      ######################################################
+      ##### Testing AUTOMATIC commits-based MINOR bump #####
+      ######################################################
+      - name: Add commit with a 'feat' type
+        working-directory: ${{ env.TEST_TARGET_REPO }}
         run: |
           echo "blabla" > feat_file
           git add feat_file
           git commit -m "feat: added a new feature"
 
-      - name: Run local action for minor bump
+      - name: Run action for repo with a minor bump
         id: minor_bumper
         uses: ./
         with:
-          path: ${{ github.workspace }}/tmprepo
+          path: ${{ env.TEST_TARGET_REPO }}
+          label: -beta2
 
-      - name: Verify minor bump
+      - name: Fail for automatic minor bump
         if: >
-          steps.minor_bumper.outputs.new_version != '1.3.0' ||
-          steps.minor_bumper.outputs.next_dev_iteration != '1.3.1-dev' ||
+          steps.minor_bumper.outputs.current != '1.2.3' ||
+          steps.minor_bumper.outputs.bump != 'minor' ||
+          steps.minor_bumper.outputs.next != '1.3.0' ||
+          steps.minor_bumper.outputs.dev != '1.3.1-beta2' ||
           steps.minor_bumper.outputs.major_part != '1' ||
           steps.minor_bumper.outputs.minor_part != '3' ||
           steps.minor_bumper.outputs.patch_part != '0' ||
-          steps.minor_bumper.outputs.patch_next_dev != '1-dev'
+          steps.minor_bumper.outputs.dev_patch_part != '1-beta2'
         uses: actions/github-script@v7
         with:
           script: core.setFailed('minor bump not working correctly')
 
-      - name: Add breaking commit
-        working-directory: tmprepo
+      ######################################################
+      ##### Testing AUTOMATIC commits-based MAJOR bump #####
+      ######################################################
+      - name: Add commit with "BREAKING CHANGE" in its body
+        working-directory: ${{ env.TEST_TARGET_REPO }}
         run: |
           echo "blabla" > breaking_file
           git add breaking_file
@@ -93,43 +106,129 @@ jobs:
 
           BREAKING CHANGE: broke some stuff"
 
-      - name: Run local action for major bump
+      - name: Run action for repo with a major bump
         id: major_bumper
         uses: ./
         with:
-          path: ${{ github.workspace }}/tmprepo
+          path: ${{ env.TEST_TARGET_REPO }}
 
-      - name: Verify major bump
+      - name: Fail for automatic major bump
         if: >
-          steps.major_bumper.outputs.new_version != '2.0.0' ||
-          steps.major_bumper.outputs.next_dev_iteration != '2.0.1-dev' ||
+          steps.major_bumper.outputs.current != '1.2.3' ||
+          steps.major_bumper.outputs.bump != 'major' ||
+          steps.major_bumper.outputs.next != '2.0.0' ||
+          steps.major_bumper.outputs.dev != '2.0.1-dev' ||
           steps.major_bumper.outputs.major_part != '2' ||
           steps.major_bumper.outputs.minor_part != '0' ||
           steps.major_bumper.outputs.patch_part != '0' ||
-          steps.major_bumper.outputs.patch_next_dev != '1-dev'
+          steps.major_bumper.outputs.dev_patch_part != '1-dev'
         uses: actions/github-script@v7
         with:
           script: core.setFailed('major bump not working correctly')
 
-      - name: Run local action overriding the bump with a patch bump
+      #################################################################################
+      ##### Testing AUTOMATIC commits-based MAJOR bump OVERRIDE with a PATCH bump #####
+      #################################################################################
+      - name: Run action with PATCH bump override
         id: bumper_override
         uses: ./
         with:
-          path: ${{ github.workspace }}/tmprepo
+          path: ${{ env.TEST_TARGET_REPO }}
           bump: patch
 
-      - name: Verify overriding with patch bump
+      - name: Fail for override patch bump
         if: >
-          steps.patch_bumper.outputs.new_version != '1.2.4' ||
-          steps.patch_bumper.outputs.next_dev_iteration != '1.2.5-dev' ||
-          steps.patch_bumper.outputs.major_part != '1' ||
-          steps.patch_bumper.outputs.minor_part != '2' ||
-          steps.patch_bumper.outputs.patch_part != '4' ||
-          steps.patch_bumper.outputs.patch_next_dev != '5-dev'
+          steps.bumper_override.outputs.current != '1.2.3' ||
+          steps.bumper_override.outputs.bump != 'patch' ||
+          steps.bumper_override.outputs.next != '1.2.4' ||
+          steps.bumper_override.outputs.dev != '1.2.5-dev' ||
+          steps.bumper_override.outputs.major_part != '1' ||
+          steps.bumper_override.outputs.minor_part != '2' ||
+          steps.bumper_override.outputs.patch_part != '4' ||
+          steps.bumper_override.outputs.dev_patch_part != '5-dev'
         uses: actions/github-script@v7
         with:
           script: core.setFailed('overriding the bump as a patch bump not working correctly')
 
+      ###################################################
+      ##### Testing MANUAL source with a PATCH bump #####
+      ###################################################
+      - name: Run action with a manual source and PATCH bump
+        id: manu_patch_bumper
+        uses: ./
+        with:
+          path: ${{ env.TEST_TARGET_REPO }}
+          source: 3.2.1
+          bump: patch
+          label: -alpha1
+
+      - name: Fail for manual patch bump
+        if: >
+          steps.manu_patch_bumper.outputs.current != '3.2.1' ||
+          steps.manu_patch_bumper.outputs.bump != 'patch' ||
+          steps.manu_patch_bumper.outputs.next != '3.2.2' ||
+          steps.manu_patch_bumper.outputs.dev != '3.2.3-alpha1' ||
+          steps.manu_patch_bumper.outputs.major_part != '3' ||
+          steps.manu_patch_bumper.outputs.minor_part != '2' ||
+          steps.manu_patch_bumper.outputs.patch_part != '2' ||
+          steps.manu_patch_bumper.outputs.dev_patch_part != '3-alpha1'
+        uses: actions/github-script@v7
+        with:
+          script: core.setFailed('manual patch bump not working correctly')
+
+      ###################################################
+      ##### Testing MANUAL source with a MINOR bump #####
+      ###################################################
+      - name: Run action with a manual source and MINOR bump
+        id: manu_minor_bumper
+        uses: ./
+        with:
+          path: ${{ env.TEST_TARGET_REPO }}
+          source: 3.2.1
+          bump: minor
+
+      - name: Fail for manual minor bump
+        if: >
+          steps.manu_minor_bumper.outputs.current != '3.2.1' ||
+          steps.manu_minor_bumper.outputs.bump != 'minor' ||
+          steps.manu_minor_bumper.outputs.next != '3.3.0' ||
+          steps.manu_minor_bumper.outputs.dev != '3.3.1-dev' ||
+          steps.manu_minor_bumper.outputs.major_part != '3' ||
+          steps.manu_minor_bumper.outputs.minor_part != '3' ||
+          steps.manu_minor_bumper.outputs.patch_part != '0' ||
+          steps.manu_minor_bumper.outputs.dev_patch_part != '1-dev'
+        uses: actions/github-script@v7
+        with:
+          script: core.setFailed('manual minor bump not working correctly')
+
+      ###################################################
+      ##### Testing MANUAL source with a MAJOR bump #####
+      ###################################################
+      - name: Run action with a manual source and MAJOR bump
+        id: manu_major_bumper
+        uses: ./
+        with:
+          path: ${{ env.TEST_TARGET_REPO }}
+          source: 3.2.1
+          bump: major
+
+      - name: Fail for manual major bump
+        if: >
+          steps.manu_major_bumper.outputs.current != '3.2.1' ||
+          steps.manu_major_bumper.outputs.bump != 'major' ||
+          steps.manu_major_bumper.outputs.next != '4.0.0' ||
+          steps.manu_major_bumper.outputs.dev != '4.0.1-dev' ||
+          steps.manu_major_bumper.outputs.major_part != '4' ||
+          steps.manu_major_bumper.outputs.minor_part != '0' ||
+          steps.manu_major_bumper.outputs.patch_part != '0' ||
+          steps.manu_major_bumper.outputs.dev_patch_part != '1-dev'
+        uses: actions/github-script@v7
+        with:
+          script: core.setFailed('manual major bump not working correctly')
+
+      ###################
+      ##### Cleanup #####
+      ###################
       - name: Cleanup
         if: always()
-        run: rm -rf ${{ github.workspace }}/tmprepo
+        run: rm -rf ${{ env.TEST_TARGET_REPO }}
