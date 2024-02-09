@@ -3441,9 +3441,9 @@ var require_conventional_recommended_bump = __commonJS({
   }
 });
 
-// node_modules/version-bumper/src/bumper.js
+// node_modules/@tomerfi/version-bumper/src/bumper.js
 var require_bumper = __commonJS({
-  "node_modules/version-bumper/src/bumper.js"(exports2, module2) {
+  "node_modules/@tomerfi/version-bumper/src/bumper.js"(exports2, module2) {
     module2.exports = bumper2;
     var recBump = require_conventional_recommended_bump();
     var semverTags = require_git_semver_tags();
@@ -3540,9 +3540,9 @@ var require_bumper = __commonJS({
   }
 });
 
-// node_modules/version-bumper/src/index.js
+// node_modules/@tomerfi/version-bumper/src/index.js
 var require_src = __commonJS({
-  "node_modules/version-bumper/src/index.js"(exports2, module2) {
+  "node_modules/@tomerfi/version-bumper/src/index.js"(exports2, module2) {
     module2.exports = async function(opts) {
       return require_bumper()({ source: "git", path: "./", bump: "auto", label: "-dev", ...opts });
     };

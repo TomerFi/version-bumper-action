@@ -1,4 +1,4 @@
-const bumper = require('version-bumper')
+const bumper = require('@tomerfi/version-bumper')
 const core = require('@actions/core');
 
 bumper({
