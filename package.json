@@ -1,0 +1,40 @@
+{
+  "name": "version-bumper-action",
+  "version": "1.2.2",
+  "description": "Automated semantic version bumps based on conventional commits",
+  "homepage": "https://github.com/TomerFi/version-bumper-action#readme",
+  "license": "ISC",
+  "private": true,
+  "type": "commonjs",
+  "author": {
+    "name": "Tomer Figenblat",
+    "url": "https://github.com/TomerFi"
+  },
+  "repository": "github:TomerFi/version-bumper-action",
+  "bugs": "https://github.com/TomerFi/version-bumper-action/issues",
+  "keywords": [
+    "semver",
+    "semantic version",
+    "automation",
+    "github action",
+    "conventional commits"
+  ],
+  "main": "dist/action.js",
+  "engines": {
+    "node": ">= 20.0.0",
+    "npm": ">= 10.0.0"
+  },
+  "scripts": {
+    "build": "esbuild action.js --bundle --outdir=dist --platform=node",
+    "lint": "eslint action.js"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@tomerfi/version-bumper": "^3.0.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.20.0",
+    "eslint": "^8.29.0",
+    "eslint-plugin-editorconfig": "^4.0.2"
+  }
+}

@@ -1,83 +1,77 @@
-# Version Bumper Action</br>[![gh-build-status]][0]
+<div align="center">
+<h1>Version Bumper Action</h1>
+<h3>:package::rocket: Spice up your release workflows with automated version bumps! :rocket::package:</h3>
+</div>
 
-:package::rocket: Spice up your release workflow with automated version bumps! :rocket::package:</br>
+## About
 
-This action encapsulates [Version Bumper][1] for determining the next semantic version,</br>
-based on the [semantic tags][2] and [conventional commits][3] in your git repository.
+The _Version Bumper Action_ uses the [version bumper tool][version-bumper] to figure out the next
+[semantic version][semver] bump based on [conventional commits][conventional-commits], or plain instructions.
 
-## Minimal usage example
+<details>
+<summary>Upgrading from version 1 to 2? Click here.</summary>
+
+<h3>Version 3 introduced breaking changes</h3>
+<ul>
+
+<li>The action was rebuilt using Node.js.</li>
+
+<li>
+Changes in the action flags:
+  <ul>
+  <li><strong>changelog</strong> was removed.</li>
+  <li><strong>preset</strong> was removed.</li>
+  <li><strong>folder</strong> was changed to <strong>path</strong>. It's worth mentioning the folder/path requires a
+    full path and not a folder relative to the workspace. (<em>folder</em> will eventually be removed).</li>
+  <li><strong>bumpoverride</strong> was changed to <strong>bump</strong> (<em>bumpoverride</em> will eventually be removed).
+  </li>
+  </ul>
+</li>
+<br/>
+
+</ul>
+</details>
+
+## Usage example
 
 ```yaml
-- name: Checkout sources
-  uses: actions/checkout@v2
+- uses: actions/checkout@v2
   with:
     # fetch-depth 0 will check out all the commits and tags needed for the bumper
     fetch-depth: 0
 
-- name: Run bumper
-  id: bumper
+- id: bumper
   uses: tomerfi/version-bumper-action@1.2.2
+
+# assuming previous tag was 1.2.4 and feat-type commits were made, this will print 1.3.0.
+- run: echo ${{ steps.bumper.outputs.next }}
 ```
 
-## Parse outputs
+### Inputs
 
-If the latest [semantic tag][2], in your git repository is, for instance, `2.1.6`.</br>
-The following table illustrates the outcome based on the required bump,</br>
-identified from [commit messages][3]:
+| Key       | Description                                                                                   | Default value             |
+|-----------|-----------------------------------------------------------------------------------------------|---------------------------|
+| `source`  | Source for the bump, any semver string or 'git' to fetch from tags                            | `git`                     |
+| `bump`    | Target bump, 'major', 'minor', 'patch', 'auto'. An 'auto' bump only works with a 'git' source | `auto`                    |
+| `label`   | Development iteration build label                                                             | `-dev`                    |
+| `path`    | When source is 'git', set repository path                                                     | `${{ github.workspace }}` |
 
-| Bump  | new_version | next_dev_iteration | changelog filename |
-| :---- | :---------: | :----------------: | :----------------- |
-| major |    3.0.0    |     3.0.1.dev      | changelog-3.0.0.md |
-| minor |    2.2.0    |     2.2.1.dev      | changelog-2.2.0.md |
-| patch |    2.1.7    |     2.1.8.dev      | changelog-2.1.7.md |
+### Outputs
 
-## Full usage example
+| Key              | Description                                                                 | Example     |
+|------------------|-----------------------------------------------------------------------------|-------------|
+| `current`        | The original version                                                        | `1.2.3`     |
+| `bump`           | The bump performed                                                          | `patch`     |
+| `next`           | The next version                                                            | `1.2.4`     |
+| `dev`            | The next development iteration version                                      | `1.2.5-dev` |
+| `major_part`     | The major part of the next version                                          | `1`         |
+| `minor_part`     | The minor part of the next version                                          | `2`         |
+| `patch_part`     | The patch part of the next version                                          | `4`         |
+| `dev_patch_part` | The patch part of the development iteration                                 | `5-dev`     |
+| `bump_object`    | The original object returned from the [version bumper tool][version-bumper] |             |
 
-```yaml
-- name: Checkout sources
-  uses: actions/checkout@v2
-  with:
-    # fetch-depth 0 will check out all the commits and tags needed for the bumper
-    fetch-depth: 0
 
-- name: Run bumper
-  id: bumper
-  uses: tomerfi/version-bumper-action@1.2.2
-  with:
-    label: .dev
-    changelog: true
-    preset: conventionalcommits
-    folder: ./
-    bumpoverride: auto
-```
-
-## Inputs
-
-| Key             | Description                                             | Default value         |
-| --------------- | ------------------------------------------------------- | --------------------- |
-| `label`         | Build label for the development iteration               | `.dev`                |
-| `changelog`     | Set true to create a changelog-X.md file                | `false`               |
-| `preset`        | Preset for creating the changelog                       | `conventionalcommits` |
-| `folder`        | Folder in the workspace in which the .git repo resides  | `./`                  |
-| `bumpoverride`  | Override the version bump, can be either `auto`, `major`, `minor` or `patch`  | `auto` |
-
-> Tip: other than `conventionalcommits`, possible prest values can be found [here][4].
-
-## Outputs
-
-| Key                  | Description                                 | Example     |
-| -------------------- | ------------------------------------------- | ----------- |
-| `new_version`        | The next semantic version                   | `1.2.3`     |
-| `next_dev_iteration` | The next development iteration              | `1.2.4.dev` |
-| `major_part`         | The major part of the next version          | `1`         |
-| `minor_part`         | The minor part of the next version          | `2`         |
-| `patch_part`         | The patch part of the next version          | `3`         |
-| `patch_next_dev`     | The patch part of the development iteration | `4.dev`     |
-
-> If `changelog` is set to `true`, a file named `changelog-1.2.3.md` will be created,</br>
-> from which you can source your release notes or updated your changelog.
-
-## Contributors [![all-contributors]][10]
+## Contributors [![all-contributors-badge]][all-contributors]
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -97,32 +91,11 @@ identified from [commit messages][3]:
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-## Example workflows
-
-Here are a couple of projects of mine, using this action:
-
-- [aioswitcher (python)][5]
-- [switcher_webapi (docker, coordinated with a text file)][6]
-- [alexa-skills-tester (java)][7]
-- [auto-me-bot (javascript)][8]
-- [this action eats its own dogfood (docker based action)][9]
-
-<!-- editorconfig-checker-disable -->
 <!-- Real links -->
-
-[0]: https://github.com/TomerFi/version-bumper-action/actions/workflows/stage.yml
-[1]: https://hub.docker.com/r/tomerfi/version-bumper
-[2]: https://semver.org/
-[3]: https://conventionalcommits.org
-[4]: https://github.com/conventional-changelog/conventional-changelog/blob/master/packages/conventional-changelog-cli/cli.js
-[5]: https://github.com/TomerFi/aioswitcher/blob/dev/.github/workflows/release.yml
-[6]: https://github.com/TomerFi/switcher_webapi/blob/dev/.github/workflows/release.yml
-[7]: https://github.com/TomerFi/alexa-skills-tester/blob/master/.github/workflows/release.yml
-[8]: https://github.com/TomerFi/auto-me-bot/blob/master/.github/workflows/release.yml
-[9]: https://github.com/TomerFi/version-bumper-action/blob/master/.github/workflows/release.yml
-[10]: https://allcontributors.org/
+[semver]: https://semver.org/
+[conventional-commits]: https://conventionalcommits.org
+[all-contributors]: https://allcontributors.org/
+[version-bumper]: https://github.com/TomerFi/version-bumper
 <!-- Badge links -->
-[all-contributors]: https://img.shields.io/github/all-contributors/tomerfi/version-bumper-action?color=ee8449&style=flat-square
-[gh-build-status]: https://github.com/TomerFi/version-bumper-action/actions/workflows/stage.yml/badge.svg
+[all-contributors-badge]: https://img.shields.io/github/all-contributors/tomerfi/version-bumper-action?style=plastic&label=%20&color=b7b1e3
 
-<!-- editorconfig-checker-enable -->
