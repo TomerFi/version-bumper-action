@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@actions/core": "^1.10.1",
-    "@tomerfi/version-bumper": "^3.0.1"
+    "@tomerfi/version-bumper": "^3.0.5"
   },
   "devDependencies": {
     "esbuild": "^0.20.0",
