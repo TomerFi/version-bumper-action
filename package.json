@@ -33,7 +33,7 @@
     "@tomerfi/version-bumper": "^3.0.5"
   },
   "devDependencies": {
-    "esbuild": "^0.20.1",
+    "esbuild": "^0.20.2",
     "eslint": "^8.57.0",
     "eslint-plugin-editorconfig": "^4.0.2"
   }
