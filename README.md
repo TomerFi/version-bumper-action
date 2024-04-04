@@ -11,11 +11,19 @@ The _Version Bumper Action_ uses the [version bumper tool][version-bumper] to fi
 <details>
 <summary>Upgrading from version 1 to 2? Click here.</summary>
 
+<p>
+Successful upgrades examples:
+<a href="https://github.com/TomerFi/alexa-skills-tester/commit/d19bea17a197cd91f52aec6790e8558d409c7134">alexa-skills-tester</a>,
+<a href="https://github.com/TomerFi/github-viewer-stats/commit/9f424642a9bb89b980e7a1b36ed2b10911ec2617">github-viewer-stats</a>,
+<a href="https://github.com/TomerFi/auto-me-bot/commit/d7e9f1f9fc8fe42fa091585bd736e21e3ab39cab">auto-me-bot</a>,
+<a href="https://github.com/TomerFi/tomfi-archetypes/commit/4cc89ea6c5f9ab63a95aef53d932a73b46f22412">tomfi-archetypes</a>,
+<a href="https://github.com/TomerFi/shabbat-api/commit/50af0d1454814ce257ce36d63792236661158fe6">shabbat-api</a>,
+
+</p>
+
 <h3>Version 3 introduced breaking changes</h3>
 <ul>
-
 <li>The action was rebuilt using Node.js.</li>
-
 <li>
 Changes in the action flags:
   <ul>
@@ -27,8 +35,6 @@ Changes in the action flags:
   </li>
   </ul>
 </li>
-<br/>
-
 </ul>
 </details>
 
