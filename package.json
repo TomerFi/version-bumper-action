@@ -37,6 +37,6 @@
     "esbuild": "^0.23.0",
     "eslint": "^9.7.0",
     "eslint-plugin-editorconfig": "^4.0.2",
-    "globals": "^15.8.0"
+    "globals": "^15.9.0"
   }
 }
