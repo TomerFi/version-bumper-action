@@ -47,7 +47,7 @@ Changes in the action flags:
     fetch-depth: 0
 
 - id: bumper
-  uses: tomerfi/version-bumper-action@2.0.1
+  uses: tomerfi/version-bumper-action@2.0.2
 
 # assuming previous tag was 1.2.4 and feat-type commits were made, this will print 1.3.0.
 - run: echo ${{ steps.bumper.outputs.next }}
