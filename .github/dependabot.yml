@@ -12,15 +12,3 @@ updates:
       include: "scope"
     assignees:
       - "tomerfi"
-
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    labels:
-      - "type: dependencies"
-    commit-message:
-      prefix: "build"
-      include: "scope"
-    assignees:
-      - "tomerfi"

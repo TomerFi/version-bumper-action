@@ -25,6 +25,3 @@ permissions:
 jobs:
   test:
     uses: ./.github/workflows/test_action.yml
-  build:
-    needs: test
-    uses: ./.github/workflows/verify_dist.yml
