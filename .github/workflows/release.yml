@@ -7,6 +7,10 @@ on:
       title:
         description: "Release title (blank for tag)"
         required: false
+      bump:
+        description: "Bump type (major/minor/patch/auto)"
+        default: "auto"
+        required: true
 
 jobs:
   release:
@@ -23,6 +27,8 @@ jobs:
       - name: Eat own dogfood
         id: bumper
         uses: ./
+        with:
+          bump: ${{ github.event.inputs.bump }}
 
       - name: Create a release name
         id: release_name
