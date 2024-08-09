@@ -22,40 +22,62 @@ inputs:
     description: When source is 'git', set folder in the git. Defaults to running workspace.
     required: false
     default: ${{ github.workspace }}
-  # backward compatibility, will eventually be removed
-  folder:
-    description: DEPRECATED Please use 'path'.
-    required: false
-  bumpoverride:
-    description: DEPRECATED Please use 'bump'.
-    required: false
 outputs:
   current:
     description: The original version.
+    value: ${{ steps.bumper.outputs.current }}
   bump:
     description: The bump performed.
+    value: ${{ steps.bumper.outputs.bump }}
   next:
     description: The next version.
+    value: ${{ steps.bumper.outputs.next }}
   dev:
     description: The next development iteration version.
+    value: ${{ steps.bumper.outputs.dev }}
   bump_object:
     description: The original object returned from the version-bumper tool.
+    value: ${{ steps.bumper.outputs.bump_object }}
   # segregated version parts
   major_part:
     description: The major part of the next version.
+    value: ${{ steps.bumper.outputs.major_part }}
   minor_part:
     description: The minor part of the next version.
+    value: ${{ steps.bumper.outputs.minor_part }}
   patch_part:
     description: The patch part of the next version.
+    value: ${{ steps.bumper.outputs.patch_part }}
   dev_patch_part:
     description: The patch part of the development iteration.
-  # backward compatibility, will eventually be removed
-  new_version:
-    description: DEPRECATED Please use 'next'.
-  next_dev_iteration:
-    description: DEPRECATED Please use 'dev'.
-  patch_next_dev:
-    description: DEPRECATED Please use 'dev_patch_part'.
+    value: ${{ steps.bumper.outputs.dev_patch_part }}
 runs:
-  using: node20
-  main: dist/action.js
+  using: composite
+  steps:
+    - shell: bash
+      env:
+        VB_VERSION: 4.0.2
+      run: npm install -g @tomerfi/version-bumper@${{ env.VB_VERSION }}
+
+    - shell: bash
+      id: bumper
+      run: |
+        # invoke the version bumper tool
+        bo=$(version-bumper -b=${{ inputs.bump }} -l=${{ inputs.label }} -s=${{ inputs.source }} ${{ inputs.path }})
+        # parse output
+        current=$(echo $bo | jq '.current' --raw-output)
+        bump=$(echo $bo | jq '.bump' --raw-output)
+        next=$(echo $bo | jq '.next' --raw-output)
+        dev=$(echo $bo | jq '.dev' --raw-output)
+        IFS='.' read -r major_part minor_part patch_part <<<$(echo $next)
+        dev_patch_part=$(echo $dev | cut -d "." -f 3)
+        # save outputs
+        echo "current=$current" >> $GITHUB_OUTPUT
+        echo "bump=$bump" >> $GITHUB_OUTPUT
+        echo "next=$next" >> $GITHUB_OUTPUT
+        echo "dev=$dev" >> $GITHUB_OUTPUT
+        echo "bump_object=$bo" >> $GITHUB_OUTPUT
+        echo "major_part=$major_part" >> $GITHUB_OUTPUT
+        echo "minor_part=$minor_part" >> $GITHUB_OUTPUT
+        echo "patch_part=$patch_part" >> $GITHUB_OUTPUT
+        echo "dev_patch_part=$dev_patch_part" >> $GITHUB_OUTPUT
