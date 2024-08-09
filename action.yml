@@ -58,7 +58,6 @@ runs:
       env:
         VB_VERSION: 4.0.2
       run: npm install -g @tomerfi/version-bumper@${{ env.VB_VERSION }}
-
     - shell: bash
       id: bumper
       run: |
