@@ -35,7 +35,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            var retval = '${{ steps.bumper.outputs.new_version }}'
+            var retval = '${{ steps.bumper.outputs.next }}'
             if ('${{ github.event.inputs.title }}') {
               retval = retval.concat(' - ${{ github.event.inputs.title }}')
             }
@@ -48,7 +48,7 @@ jobs:
           script: |
             const repo_name = context.payload.repository.full_name
             const response = await github.request('POST /repos/' + repo_name + '/releases', {
-              tag_name: '${{ steps.bumper.outputs.new_version }}',
+              tag_name: '${{ steps.bumper.outputs.next }}',
               name: '${{ steps.release_name.outputs.value }}',
               generate_release_notes: true
             })
@@ -57,7 +57,7 @@ jobs:
       - name: Update usage example
         run: >
           sed -i
-          's/uses\: tomerfi\/version-bumper-action@.*/uses\: tomerfi\/version-bumper-action@${{ steps.bumper.outputs.new_version }}/g'
+          's/uses\: tomerfi\/version-bumper-action@.*/uses\: tomerfi\/version-bumper-action@${{ steps.bumper.outputs.next }}/g'
           README.md
 
       - name: Configure git
@@ -68,5 +68,5 @@ jobs:
       - name: Push modifications
         run: |
           git add README.md
-          git commit -m "docs: update README usage section with ${{ steps.bumper.outputs.new_version }} [skip ci]"
+          git commit -m "docs: update README usage section with ${{ steps.bumper.outputs.next }} [skip ci]"
           git push
