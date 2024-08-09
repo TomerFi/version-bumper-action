@@ -50,4 +50,4 @@ jobs:
         if: steps.diff.outcome == 'failure'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh pr create --base main --head new-version-bumper-${{ github.run_id }} --fill
+        run: gh pr create --base master --head new-version-bumper-${{ github.run_id }} --fill
