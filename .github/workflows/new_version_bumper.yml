@@ -1,0 +1,53 @@
+---
+name: New Version Bumper
+
+on:
+  repository_dispatch:
+    types: [new-version-bumper-released]
+
+concurrency:
+  group: update-version-bumper
+  cancel-in-progress: true
+
+jobs:
+  update_version_bumper:
+    runs-on: ubuntu-latest
+    name: Update Version Bumper via PR
+    environment: update-version-bumper
+
+    steps:
+      - name: checkout sources
+        uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+
+      - name: configure git
+        run: |
+          git config user.name "${{ github.event.sender.login }}"
+          git config user.email "${{ github.event.sender.login }}@users.noreply.github.com"
+
+      - name: get new version
+        id: new_version
+        run: echo "text=${{ github.event.client_payload.release }}" | xargs >> $GITHUB_OUTPUT
+
+      - name: set new version
+        run: yq -i '.runs.steps[0].env.VB_VERSION = "${{ steps.new_version.outputs.text }}"' action.yml
+
+      - name: run diff
+        id: diff
+        continue-on-error: true
+        run: git diff -s --exit-code action.yml
+
+      - name: commit to branch
+        if: steps.diff.outcome == 'failure'
+        run: |
+          git checkout -b new-version-bumper-${{ github.run_id }}
+          git add action.yml
+          git commit -m "build: bump version bumper to ${{ steps.new_version.outputs.text }}"
+          git push origin new-version-bumper-${{ github.run_id }}
+
+      - name: create pull request
+        if: steps.diff.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr create --base main --head new-version-bumper-${{ github.run_id }} --fill
