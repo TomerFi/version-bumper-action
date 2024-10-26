@@ -76,32 +76,7 @@ Changes in the action flags:
 | `dev_patch_part` | The patch part of the development iteration                                 | `5-dev`     |
 | `bump_object`    | The original object returned from the [version bumper tool][version-bumper] |             |
 
-
-## Contributors [![all-contributors-badge]][all-contributors]
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center"><a href="https://github.com/MisterTimn"><img src="https://avatars.githubusercontent.com/u/4209558?v=4?s=100" width="100px;" alt="Jasper Vaneessen"/><br /><sub><b>Jasper Vaneessen</b></sub></a><br /><a href="https://github.com/TomerFi/version-bumper-action/commits?author=MisterTimn" title="Code">💻</a> <a href="https://github.com/TomerFi/version-bumper-action/commits?author=MisterTimn" title="Documentation">📖</a></td>
-      <td align="center"><a href="https://gsoftwarelab.com"><img src="https://avatars.githubusercontent.com/u/9322695?v=4?s=100" width="100px;" alt="Lucas Schmutzler"/><br /><sub><b>Lucas Schmutzler</b></sub></a><br /><a href="https://github.com/TomerFi/version-bumper-action/commits?author=g4m3r0" title="Code">💻</a></td>
-      <td align="center"><a href="https://github.com/mrdoodles"><img src="https://avatars.githubusercontent.com/u/19146299?v=4?s=100" width="100px;" alt="mrdoodles"/><br /><sub><b>mrdoodles</b></sub></a><br /><a href="https://github.com/TomerFi/version-bumper-action/commits?author=mrdoodles" title="Code">💻</a> <a href="https://github.com/TomerFi/version-bumper-action/commits?author=mrdoodles" title="Documentation">📖</a></td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
 <!-- Real links -->
 [semver]: https://semver.org/
 [conventional-commits]: https://conventionalcommits.org
-[all-contributors]: https://allcontributors.org/
 [version-bumper]: https://github.com/TomerFi/version-bumper
-<!-- Badge links -->
-[all-contributors-badge]: https://img.shields.io/github/all-contributors/tomerfi/version-bumper-action?style=plastic&label=%20&color=b7b1e3
-
