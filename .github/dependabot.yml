@@ -9,5 +9,6 @@ updates:
       - "type: dependencies"
     commit-message:
       prefix: "ci"
+    rebase-strategy: disabled
     assignees:
       - "tomerfi"
