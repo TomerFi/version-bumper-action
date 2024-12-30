@@ -9,6 +9,5 @@ updates:
       - "type: dependencies"
     commit-message:
       prefix: "ci"
-      include: "scope"
     assignees:
       - "tomerfi"
