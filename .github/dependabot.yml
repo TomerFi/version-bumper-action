@@ -11,4 +11,4 @@ updates:
       prefix: "ci"
     rebase-strategy: disabled
     assignees:
-      - "tomerfi"
+      - "TomerFi"
