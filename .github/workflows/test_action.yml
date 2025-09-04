@@ -57,7 +57,7 @@ jobs:
           steps.patch_bumper.outputs.minor_part != '2' ||
           steps.patch_bumper.outputs.patch_part != '4' ||
           steps.patch_bumper.outputs.dev_patch_part != '5-dev'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: core.setFailed('patch bump not working correctly')
 
@@ -88,7 +88,7 @@ jobs:
           steps.minor_bumper.outputs.minor_part != '3' ||
           steps.minor_bumper.outputs.patch_part != '0' ||
           steps.minor_bumper.outputs.dev_patch_part != '1-beta2'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: core.setFailed('minor bump not working correctly')
 
@@ -120,7 +120,7 @@ jobs:
           steps.major_bumper.outputs.minor_part != '0' ||
           steps.major_bumper.outputs.patch_part != '0' ||
           steps.major_bumper.outputs.dev_patch_part != '1-dev'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: core.setFailed('major bump not working correctly')
 
@@ -144,7 +144,7 @@ jobs:
           steps.bumper_override.outputs.minor_part != '2' ||
           steps.bumper_override.outputs.patch_part != '4' ||
           steps.bumper_override.outputs.dev_patch_part != '5-dev'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: core.setFailed('overriding the bump as a patch bump not working correctly')
 
@@ -170,7 +170,7 @@ jobs:
           steps.manu_patch_bumper.outputs.minor_part != '2' ||
           steps.manu_patch_bumper.outputs.patch_part != '2' ||
           steps.manu_patch_bumper.outputs.dev_patch_part != '3-alpha1'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: core.setFailed('manual patch bump not working correctly')
 
@@ -195,7 +195,7 @@ jobs:
           steps.manu_minor_bumper.outputs.minor_part != '3' ||
           steps.manu_minor_bumper.outputs.patch_part != '0' ||
           steps.manu_minor_bumper.outputs.dev_patch_part != '1-dev'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: core.setFailed('manual minor bump not working correctly')
 
@@ -220,7 +220,7 @@ jobs:
           steps.manu_major_bumper.outputs.minor_part != '0' ||
           steps.manu_major_bumper.outputs.patch_part != '0' ||
           steps.manu_major_bumper.outputs.dev_patch_part != '1-dev'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: core.setFailed('manual major bump not working correctly')
 
