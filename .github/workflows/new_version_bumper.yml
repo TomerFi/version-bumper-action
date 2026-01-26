@@ -58,5 +58,5 @@ jobs:
       - name: create pull request
         if: steps.diff.outcome == 'failure'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.PR_CREATOR_TOKEN }}
         run: gh pr create --base master --head new-version-bumper-${{ github.run_id }} --fill
