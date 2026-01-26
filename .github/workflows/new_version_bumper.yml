@@ -23,8 +23,8 @@ jobs:
 
       - name: configure git
         run: |
-          git config user.name "${{ github.event.sender.login }}"
-          git config user.email "${{ github.event.sender.login }}@users.noreply.github.com"
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
 
       - name: get new version
         id: new_version
