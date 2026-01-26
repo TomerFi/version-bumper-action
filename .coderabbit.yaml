@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+---
+reviews:
+  path_instructions:
+    - path: action.yml
+      instructions: |
+        Review GitHub Action for:
+        - Clear input/output definitions
+        - Proper step organization
+        - Shell script best practices
+    - path: .github/workflows/*.yml
+      instructions: |
+        Review workflows for:
+        - Proper trigger conditions
+        - Security best practices
+        - Efficient job organization
