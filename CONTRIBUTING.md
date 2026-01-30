@@ -49,6 +49,9 @@ Install actionlint:
 # macOS (Homebrew)
 brew install actionlint
 
+# Linux (download binary)
+# See https://github.com/rhysd/actionlint/releases
+
 # Or aqua
 aqua g -i actionlint
 ```
