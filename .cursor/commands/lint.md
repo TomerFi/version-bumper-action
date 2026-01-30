@@ -20,7 +20,9 @@ Requires `actionlint` to be installed. See CONTRIBUTING.md for installation inst
 
 - YAML syntax errors
 - GitHub Actions workflow syntax
-- Shell script issues in inline scripts (via shellcheck)
+- Shell script issues in inline scripts (via shellcheck, if installed locally)
 - Invalid action inputs/outputs
 - Type mismatches in expressions
 - Deprecated features
+
+> **Note:** CI runs actionlint without shellcheck (`-shellcheck=` flag). CodeRabbit handles shell linting separately.

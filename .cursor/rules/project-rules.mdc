@@ -12,7 +12,7 @@ A GitHub Actions composite action wrapping [@tomerfi/version-bumper](https://git
 
 - Quote all variables: `"$variable"` not `$variable`
 - Use `jq --raw-output` for JSON parsing
-- Write outputs using `>> $GITHUB_OUTPUT` format
+- Write outputs using `>> "$GITHUB_OUTPUT"` format
 - Pin version-bumper package version in `VB_VERSION` env var
 
 ## Git and PR Conventions
