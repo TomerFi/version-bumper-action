@@ -23,5 +23,18 @@ permissions:
   pull-requests: read
 
 jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    name: Lint action and workflows
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v6
+
+      - name: Run actionlint
+        uses: reviewdog/action-actionlint@v1
+        with:
+          actionlint_flags: -shellcheck= -pyflakes=
+
   test:
+    needs: actionlint
     uses: ./.github/workflows/test_action.yml

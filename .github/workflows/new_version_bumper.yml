@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Update Version Bumper via PR
     environment: update-version-bumper
+    permissions:
+      contents: read
 
     steps:
       - name: checkout sources
@@ -37,7 +39,7 @@ jobs:
 
       - name: get new version
         id: new_version
-        run: echo "text=${{ github.event.client_payload.release }}" | xargs >> $GITHUB_OUTPUT
+        run: echo "text=${{ github.event.client_payload.release }}" | xargs >> "$GITHUB_OUTPUT"
 
       - name: set new version
         run: yq -i '.runs.steps[0].env.VB_VERSION = "${{ steps.new_version.outputs.text }}"' action.yml
