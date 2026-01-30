@@ -4,13 +4,41 @@ reviews:
   path_instructions:
     - path: action.yml
       instructions: |
-        Review GitHub Action for:
-        - Clear input/output definitions
-        - Proper step organization
-        - Shell script best practices
+        This is a composite action with inline bash scripts. Review for:
+        
+        Shell Scripting:
+        - All variables must be quoted: "$variable" not $variable
+        - Proper error handling for parsing operations
+        - Correct jq usage with --raw-output flag
+        - Safe IFS manipulation for version splitting
+        - Proper output writing to $GITHUB_OUTPUT
+        
+        Action Structure:
+        - Input descriptions are clear and accurate
+        - Defaults are sensible
+        - All outputs are documented
+        - VB_VERSION env var is pinned to valid version
+        
+        Dependency Management:
+        - Check if VB_VERSION is current/reasonable
+        - npm install command is correct
     - path: .github/workflows/*.yml
       instructions: |
         Review workflows for:
+        
+        Security:
+        - No hardcoded secrets or tokens
+        - Proper secret handling via ${{ secrets.* }}
+        - SSH signing configured correctly for commits
+        - Appropriate permissions set on jobs
+        
+        Efficiency:
+        - Concurrency groups prevent duplicate runs
+        - Appropriate use of cache when applicable
+        - Path filters for relevant file changes
+        
+        Correctness:
         - Proper trigger conditions
-        - Security best practices
-        - Efficient job organization
+        - Job dependencies are logical
+        - Fetch depth appropriate for git operations
+        - Test assertions cover all scenarios
