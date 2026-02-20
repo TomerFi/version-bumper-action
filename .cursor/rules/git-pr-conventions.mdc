@@ -1,0 +1,10 @@
+---
+description: Git and PR conventions for conventional commits and version bumping
+alwaysApply: false
+---
+
+# Git and PR Conventions
+
+- **Conventional Commits:** Use `feat:`, `fix:`, `docs:`, `chore:`, etc.
+- **PR Titles:** Use conventional commit format (becomes squash merge message)
+- **Critical:** PR titles determine version bumps since this action uses conventional commits
