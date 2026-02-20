@@ -1,6 +1,6 @@
 ---
 description: Bash scripting conventions for action.yml inline scripts
-globs: action.yml
+globs: action.yml,**/*.sh
 alwaysApply: false
 ---
 
