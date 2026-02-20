@@ -1,0 +1,10 @@
+---
+description: Available Cursor commands and tooling in this project
+alwaysApply: true
+---
+
+# Cursor Tooling
+
+## Commands
+
+- **lint** (`.cursor/commands/lint.md`): Runs `actionlint` to validate `action.yml` and all workflow files. Requires `actionlint` installed locally.

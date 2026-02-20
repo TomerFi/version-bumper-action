@@ -1,0 +1,12 @@
+---
+description: Bash scripting conventions for action.yml inline scripts
+globs: action.yml,**/*.sh
+alwaysApply: false
+---
+
+# Bash Scripting Conventions
+
+- Quote all variables: `"$variable"` not `$variable`
+- Use `jq --raw-output` for JSON parsing
+- Write outputs using `>> "$GITHUB_OUTPUT"` format
+- Pin version-bumper package version in `VB_VERSION` env var

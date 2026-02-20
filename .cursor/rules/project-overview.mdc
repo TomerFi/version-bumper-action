@@ -1,0 +1,15 @@
+---
+description: Project overview and tech stack for version-bumper-action
+alwaysApply: true
+---
+
+# Version Bumper Action
+
+A GitHub Actions **composite action** wrapping [@tomerfi/version-bumper](https://github.com/TomerFi/version-bumper) for semantic version bumping based on conventional commits.
+
+## Tech Stack
+
+- **Runtime:** Bash inline scripts in `action.yml`
+- **Package:** `@tomerfi/version-bumper` (pinned via `VB_VERSION` env var)
+- **CI:** GitHub Actions workflows in `.github/workflows/`
+- **Linting:** `actionlint` for workflow/action validation

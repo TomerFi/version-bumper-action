@@ -1,0 +1,11 @@
+---
+description: Testing conventions for the action's CI workflows
+globs: .github/workflows/test_action.yml
+alwaysApply: false
+---
+
+# Testing Conventions
+
+- Test all functionality in `test_action.yml` workflow
+- Test automatic and manual sources
+- Test all bump types (major/minor/patch/auto)
