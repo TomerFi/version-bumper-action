@@ -16,7 +16,7 @@ on:
       - 'package-lock.json'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}${{ github.event.number }}
   cancel-in-progress: true
 
 permissions:
