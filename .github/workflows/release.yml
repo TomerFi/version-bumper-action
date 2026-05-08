@@ -59,10 +59,9 @@ jobs:
             core.setOutput('html_url', response.data.html_url)
 
       - name: Update usage example
-        run: >
-          sed -i
-          's/uses\: tomerfi\/version-bumper-action@.*/uses\: tomerfi\/version-bumper-action@${{ steps.bumper.outputs.next }}/g'
-          README.md
+        run: |
+          version="${{ steps.bumper.outputs.next }}"
+          sed -i "s|uses: tomerfi/version-bumper-action@.*|uses: tomerfi/version-bumper-action@$version|" README.md
 
       - name: Configure git
         run: |
