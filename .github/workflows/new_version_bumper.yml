@@ -29,13 +29,20 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Setup SSH signing
+        id: signing
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SIGNING_KEY }}" > ~/.ssh/signing_key
-          chmod 600 ~/.ssh/signing_key
+          KEY_PATH="$RUNNER_TEMP/signing_key"
+          echo "${{ secrets.SIGNING_KEY }}" > "$KEY_PATH"
+          chmod 600 "$KEY_PATH"
           git config gpg.format ssh
-          git config user.signingkey ~/.ssh/signing_key
+          git config user.signingkey "$KEY_PATH"
           git config commit.gpgsign true
+          echo "key_path=$KEY_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: Cleanup SSH key
+        if: always()
+        continue-on-error: true
+        run: rm -f "${{ steps.signing.outputs.key_path }}"
 
       - name: get new version
         id: new_version
