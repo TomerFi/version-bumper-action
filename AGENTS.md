@@ -28,13 +28,6 @@ uvx aicfg link agents --to claude-code --ci
 
 ## Bash Scripting
 
-- **Runtime:** Bash inline scripts in `action.yml`
-- **Package:** `@tomerfi/version-bumper` (pinned via `VB_VERSION` env var)
-- **CI:** GitHub Actions workflows in `.github/workflows/`
-- **Linting:** `actionlint` for workflow/action validation
-
-## Bash Scripting
-
 Bash scripting conventions for action.yml inline scripts.
 
 - Quote all variables: `"$variable"` not `$variable`
