@@ -24,9 +24,9 @@ permissions:
   pull-requests: read
 
 jobs:
-  actionlint:
+  lint:
     runs-on: ubuntu-latest
-    name: Lint action and workflows
+    name: Lint
     steps:
       - name: Checkout sources
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
@@ -36,6 +36,15 @@ jobs:
         with:
           actionlint_flags: -shellcheck= -pyflakes=
 
+      - name: Set up editorconfig-checker
+        uses: editorconfig-checker/action-editorconfig-checker@840e866d93b8e032123c23bac69dece044d4d84c  # v.2.2.0
+
+      - name: Ensure assistant files are linked
+        uses: tomerfi/aicfg/link@7a71c5c7e0d8d9ebdd4a2e9212c9bb04a49c687f # 0.2.0
+        with:
+          source: agents
+          target: claude-code
+
   test:
-    needs: actionlint
+    needs: lint
     uses: ./.github/workflows/test_action.yml

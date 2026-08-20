@@ -1,0 +1,21 @@
+---
+assert_lefthook_installed: true
+
+pre-commit:
+  parallel: true
+  commands:
+    no-commit-to-master:
+      run: '[ "$(git rev-parse --abbrev-ref HEAD)" != "master" ]'
+    actionlint:
+      glob: ".github/workflows/*.{yml,yaml}"
+      run: actionlint {staged_files}
+    editorconfig-checker:
+      run: editorconfig-checker {staged_files}
+    aicfg-link:
+      glob:
+        - CLAUDE.md
+        - AGENTS.md
+        - .claude/**
+        - .agents/**
+      run: uvx aicfg link agents --to claude-code --ci
+

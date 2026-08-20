@@ -2,7 +2,31 @@
 
 A GitHub Actions **composite action** wrapping [@tomerfi/version-bumper](https://github.com/TomerFi/version-bumper) for semantic version bumping based on conventional commits.
 
-## Tech Stack
+## AI Policy
+
+This project has an [AI policy](AI_POLICY.md). Always read it and ensure all suggestions, code, and contributions comply. If any behavior seems to conflict with the policy, warn the user and ask for guidance.
+
+## Architecture
+
+- `action.yml` — composite action entrypoint with inline bash scripts
+- `.github/workflows/` — CI workflows (CI, test, release, new version bumper)
+- `.github/workflows/test_action.yml` — reusable workflow for testing the action
+
+## Working Environment
+
+- This is a **GitHub Actions composite action** project.
+- This project uses [**lefthook**](https://github.com/evilmartians/lefthook) for Git hooks. Install the hook with `lefthook install`.
+- The pre-commit hook blocks commits to `master` and validates workflows with actionlint, editorconfig-checker, and aicfg.
+
+## Linting
+
+```bash
+actionlint
+editorconfig-checker
+aicfg link agents --to claude-code --ci
+```
+
+## Bash Scripting
 
 - **Runtime:** Bash inline scripts in `action.yml`
 - **Package:** `@tomerfi/version-bumper` (pinned via `VB_VERSION` env var)
@@ -33,5 +57,3 @@ Testing conventions for the action's CI workflows.
 - Test all functionality in `test_action.yml` workflow
 - Test automatic and manual sources
 - Test all bump types (major/minor/patch/auto)
-
-
