@@ -4,11 +4,6 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
-    labels:
-      - "type: dependencies"
+      interval: "weekly"
     commit-message:
       prefix: "ci"
-    rebase-strategy: disabled
-    assignees:
-      - "TomerFi"
