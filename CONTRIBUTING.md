@@ -26,11 +26,6 @@ The pre-commit hook enforces:
 - **EditorConfig** — editorconfig-checker enforces consistent file formatting
 - **Assistant files** — aicfg keeps project instructions in sync; run `uvx aicfg link agents --to claude-code --ci` to link
 
-```bash
-# Auto-installed by `lefthook install`
-# Runs automatically on every commit (unless on master, which is blocked)
-```
-
 To run checks manually against all files:
 
 ```bash
