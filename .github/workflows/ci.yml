@@ -33,9 +33,6 @@ jobs:
 
       - name: Run actionlint
         uses: reviewdog/action-actionlint@dbe5299849118fd6f099ba563d263d770955a64a  # v1.73.2
-        with:
-          actionlint_flags: -shellcheck= -pyflakes=
-
       - name: Set up editorconfig-checker
         uses: editorconfig-checker/action-editorconfig-checker@840e866d93b8e032123c23bac69dece044d4d84c  # v.2.2.0
 

@@ -23,7 +23,7 @@ This project has an [AI policy](AI_POLICY.md). Always read it and ensure all sug
 ```bash
 actionlint
 editorconfig-checker
-aicfg link agents --to claude-code --ci
+uvx aicfg link agents --to claude-code --ci
 ```
 
 ## Bash Scripting

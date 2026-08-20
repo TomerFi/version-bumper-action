@@ -24,7 +24,7 @@ The pre-commit hook enforces:
 - **Branch protection** — blocks commits directly to `master`
 - **Workflow validation** — actionlint validates GitHub Actions workflows
 - **EditorConfig** — editorconfig-checker enforces consistent file formatting
-- **Assistant files** — aicfg keeps project instructions in sync; run `aicfg link agents --to claude-code --ci` to link
+- **Assistant files** — aicfg keeps project instructions in sync; run `uvx aicfg link agents --to claude-code --ci` to link
 
 ```bash
 # Auto-installed by `lefthook install`
@@ -36,7 +36,7 @@ To run checks manually against all files:
 ```bash
 actionlint
 editorconfig-checker
-aicfg link agents --to claude-code --ci
+uvx aicfg link agents --to claude-code --ci
 ```
 
 ## Commit Style
@@ -47,7 +47,8 @@ aicfg link agents --to claude-code --ci
 ## PR Process
 
 1. Branch from `master` with a conventional name: `feat/add-input`, `fix/bump-error`
-2. Commit with a descriptive message
-3. Run all checks before submitting
-4. Open PR with a clear description of what changed and why
-5. Address feedback
+2. Use a conventional PR title (`feat:`, `fix:`, `docs:`, etc.).
+3. Commit with a descriptive message
+4. Run all checks before submitting
+5. Open PR with a clear description of what changed and why
+6. Address feedback

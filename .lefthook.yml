@@ -18,4 +18,3 @@ pre-commit:
         - .claude/**
         - .agents/**
       run: uvx aicfg link agents --to claude-code --ci
-
