@@ -32,9 +32,9 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
 
       - name: Run actionlint
-        uses: reviewdog/action-actionlint@dbe5299849118fd6f099ba563d263d770955a64a  # v1.73.2
+        uses: reviewdog/action-actionlint@d290e336d5a743810aef4404f757dc862276d2ae  # v1.73.4
       - name: Set up editorconfig-checker
-        uses: editorconfig-checker/action-editorconfig-checker@840e866d93b8e032123c23bac69dece044d4d84c  # v.2.2.0
+        uses: editorconfig-checker/action-editorconfig-checker@51f63319f592f97930c73d9c46184d20bd206393  # v.3.0.0
 
       - name: Ensure assistant files are linked
         uses: tomerfi/aicfg/link@7a71c5c7e0d8d9ebdd4a2e9212c9bb04a49c687f # 0.2.0
